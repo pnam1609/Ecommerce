@@ -4,97 +4,94 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="PERFUMEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PERFUMEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CT_DDH">
           <Key>
-            <PropertyRef Name="ID_DDH" />
-            <PropertyRef Name="ID_SP" />
+            <PropertyRef Name="MA_DDH" />
+            <PropertyRef Name="MA_SP" />
           </Key>
-          <Property Name="ID_DDH" Type="int" Nullable="false" />
-          <Property Name="ID_SP" Type="int" Nullable="false" />
-          <Property Name="SOLUONG" Type="int" />
-          <Property Name="GIA" Type="nchar" MaxLength="10" />
+          <Property Name="MA_DDH" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="MA_SP" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="SOLUONG" Type="int" Nullable="false" />
+          <Property Name="GIA" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CT_KM">
           <Key>
-            <PropertyRef Name="ID_KM" />
-            <PropertyRef Name="ID_DSP" />
+            <PropertyRef Name="MA_KM" />
+            <PropertyRef Name="MA_DSP" />
           </Key>
-          <Property Name="ID_KM" Type="int" Nullable="false" />
-          <Property Name="ID_DSP" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="MA_KM" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="MA_DSP" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="PHANTRAMKM" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="CT_PHIEUDAT">
           <Key>
-            <PropertyRef Name="ID_PHIEUDAT" />
-            <PropertyRef Name="ID_SP" />
+            <PropertyRef Name="ID_CTPD" />
           </Key>
+          <Property Name="ID_CTPD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_PHIEUDAT" Type="int" Nullable="false" />
-          <Property Name="ID_SP" Type="int" Nullable="false" />
+          <Property Name="MA_SP" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="SOLUONG" Type="int" Nullable="false" />
           <Property Name="GIA" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CT_PHIEUNHAP">
           <Key>
-            <PropertyRef Name="ID_PHIEUNHAP" />
-            <PropertyRef Name="ID_SP" />
+            <PropertyRef Name="MA_PHIEUNHAP" />
+            <PropertyRef Name="MA_SP" />
           </Key>
-          <Property Name="ID_PHIEUNHAP" Type="int" Nullable="false" />
-          <Property Name="ID_SP" Type="int" Nullable="false" />
-          <Property Name="SOLUONG" Type="int" />
-          <Property Name="GIA" Type="int" />
+          <Property Name="MA_PHIEUNHAP" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="MA_SP" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="SOLUONG" Type="int" Nullable="false" />
+          <Property Name="GIA" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CT_PHIEUTRA">
           <Key>
-            <PropertyRef Name="ID_PHIEUTRA" />
-            <PropertyRef Name="ID_PHIEUDAT" />
-            <PropertyRef Name="ID_SP" />
+            <PropertyRef Name="MA_PHIEUTRA" />
+            <PropertyRef Name="ID_CTPD" />
           </Key>
-          <Property Name="ID_PHIEUTRA" Type="int" Nullable="false" />
-          <Property Name="ID_PHIEUDAT" Type="int" Nullable="false" />
-          <Property Name="ID_SP" Type="int" Nullable="false" />
-          <Property Name="SOLUONG" Type="int" />
+          <Property Name="MA_PHIEUTRA" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID_CTPD" Type="int" Nullable="false" />
+          <Property Name="SOLUONG" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CTVC">
           <Key>
-            <PropertyRef Name="ID_CTVC" />
+            <PropertyRef Name="MA_CTVC" />
           </Key>
-          <Property Name="ID_CTVC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_CTVC" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="TEN" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="DIACHI" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="SODIENTHOAI" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="EMAIL" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="DONDATHANG">
           <Key>
-            <PropertyRef Name="ID_DDH" />
+            <PropertyRef Name="MA_DDH" />
           </Key>
-          <Property Name="ID_DDH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_DDH" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="NGAYDAT" Type="datetime" Nullable="false" />
           <Property Name="TRANGTHAI" Type="int" Nullable="false" />
           <Property Name="NGAYNHANHANG" Type="datetime" />
-          <Property Name="ID_HANG" Type="int" />
-          <Property Name="ID_PHIEUNHAP" Type="int" />
-          <Property Name="ID_NV" Type="int" />
+          <Property Name="MA_HANG" Type="nchar" MaxLength="10" />
+          <Property Name="MA_NV" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="DONGSANPHAM">
           <Key>
-            <PropertyRef Name="ID_DSP" />
+            <PropertyRef Name="MA_DSP" />
           </Key>
-          <Property Name="ID_DSP" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="MA_DSP" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="TEN" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="GIOITINH" Type="bit" Nullable="false" />
           <Property Name="XUATXU" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="MOTA" Type="ntext" />
-          <Property Name="HINHANH" Type="text" Nullable="false" />
+          <Property Name="HINHANH" Type="nvarchar" MaxLength="400" Nullable="false" />
           <Property Name="DOLUUHUONG" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="ID_HANG" Type="int" />
+          <Property Name="MA_HANG" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="HANG">
           <Key>
-            <PropertyRef Name="ID_HANG" />
+            <PropertyRef Name="MA_HANG" />
           </Key>
-          <Property Name="ID_HANG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_HANG" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="TENHANG" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EMAIL" Type="varchar" MaxLength="50" />
           <Property Name="SODIENTHOAI" Type="char" MaxLength="10" Nullable="false" />
@@ -102,21 +99,21 @@
         </EntityType>
         <EntityType Name="HOADON">
           <Key>
-            <PropertyRef Name="ID_HOADON" />
+            <PropertyRef Name="MA_HOADON" />
           </Key>
-          <Property Name="ID_HOADON" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_HOADON" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="NGAYTAOHD" Type="datetime" Nullable="false" />
           <Property Name="TONGTIEN" Type="int" Nullable="false" />
-          <Property Name="SOTHUE" Type="int" Nullable="false" />
+          <Property Name="MASOTHUE" Type="int" Nullable="false" />
           <Property Name="ID_PHIEUDAT" Type="int" />
-          <Property Name="ID_NV" Type="int" />
-          <Property Name="ID_NVGH" Type="int" />
+          <Property Name="MA_NV" Type="nchar" MaxLength="10" />
+          <Property Name="MA_NVGH" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="KHACHHANG">
           <Key>
-            <PropertyRef Name="ID_KH" />
+            <PropertyRef Name="MA_KH" />
           </Key>
-          <Property Name="ID_KH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_KH" Type="nchar" MaxLength="12" Nullable="false" />
           <Property Name="HOTEN" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="NGAYSINH" Type="date" Nullable="false" />
           <Property Name="DIACHI" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -126,37 +123,37 @@
         </EntityType>
         <EntityType Name="KHUYENMAI">
           <Key>
-            <PropertyRef Name="ID_KM" />
+            <PropertyRef Name="MA_KM" />
           </Key>
-          <Property Name="ID_KM" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_KM" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="TEN" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="NGAYBD" Type="datetime" Nullable="false" />
           <Property Name="NGAYKT" Type="datetime" Nullable="false" />
           <Property Name="MOTA" Type="nvarchar" MaxLength="100" />
-          <Property Name="ID_NV" Type="int" />
+          <Property Name="MA_NV" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="NHANVIEN">
           <Key>
-            <PropertyRef Name="ID_NV" />
+            <PropertyRef Name="MA_NV" />
           </Key>
-          <Property Name="ID_NV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_NV" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="HOTEN" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="NGAYSINH" Type="date" Nullable="false" />
           <Property Name="DIACHI" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="SODIENTHOAI" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="EMIAL" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PASS" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="NHANVIEN_GH">
           <Key>
-            <PropertyRef Name="ID_NVGH" />
+            <PropertyRef Name="MA_NVGH" />
           </Key>
-          <Property Name="ID_NVGH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_NVGH" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="HOTEN" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EMAIL" Type="varchar" MaxLength="50" />
           <Property Name="SODIENTHOAI" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="NGAYSINH" Type="date" Nullable="false" />
-          <Property Name="ID_CTVC" Type="int" />
+          <Property Name="MA_CTVC" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="PHIEUDAT">
           <Key>
@@ -167,40 +164,40 @@
           <Property Name="SODIENTHOAI" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="DIACHI" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="NGAYDAT" Type="datetime" Nullable="false" />
-          <Property Name="NGAYGIAO" Type="datetime" />
-          <Property Name="TRANGTHAI" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="ID_KH" Type="int" />
-          <Property Name="ID_NV" Type="int" />
+          <Property Name="NGAYGIAO" Type="datetime" Nullable="false" />
+          <Property Name="TRANGTHAI" Type="int" Nullable="false" />
+          <Property Name="MA_KH" Type="nchar" MaxLength="12" />
+          <Property Name="MA_NV" Type="nchar" MaxLength="10" />
+          <Property Name="TRANSACTIONID" Type="nchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="PHIEUNHAP">
           <Key>
-            <PropertyRef Name="ID_PHIEUNHAP" />
+            <PropertyRef Name="MA_PHIEUNHAP" />
           </Key>
-          <Property Name="ID_PHIEUNHAP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_PHIEUNHAP" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="NGAYTAO" Type="datetime" Nullable="false" />
-          <Property Name="ID_NV" Type="int" />
-          <Property Name="ID_DDH" Type="int" />
+          <Property Name="MA_NV" Type="nchar" MaxLength="10" />
+          <Property Name="MA_DDH" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="PHIEUTRA">
           <Key>
-            <PropertyRef Name="ID_PHIEUTRA" />
+            <PropertyRef Name="MA_PHIEUTRA" />
           </Key>
-          <Property Name="ID_PHIEUTRA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_PHIEUTRA" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="NGAYTRA" Type="datetime" Nullable="false" />
           <Property Name="LYDO" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ID_HOADON" Type="int" />
-          <Property Name="ID_NV" Type="int" />
+          <Property Name="MA_HOADON" Type="nchar" MaxLength="10" />
+          <Property Name="MA_NV" Type="nchar" MaxLength="10" />
         </EntityType>
-        <EntityType Name="SANPHAM">
+        <EntityType Name="SanPham">
           <Key>
-            <PropertyRef Name="ID_SP" />
+            <PropertyRef Name="MA_SP" />
           </Key>
-          <Property Name="ID_SP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_SP" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="DUNGTICH" Type="int" Nullable="false" />
           <Property Name="GIA" Type="int" Nullable="false" />
           <Property Name="SOLUONGTON" Type="int" Nullable="false" />
-          <Property Name="ID_DSP" Type="nchar" MaxLength="6" />
-          <Property Name="NGAYDOIGIA" Type="datetime" />
+          <Property Name="MA_DSP" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -212,27 +209,36 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="THAYDOIGIA">
+          <Key>
+            <PropertyRef Name="MA_SP" />
+            <PropertyRef Name="NGAY" />
+          </Key>
+          <Property Name="MA_SP" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NGAY" Type="datetime" Nullable="false" />
+          <Property Name="GIA" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK_CT_DDH_DONDATHANG">
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="1" />
           <End Role="CT_DDH" Type="Self.CT_DDH" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DONDATHANG">
-              <PropertyRef Name="ID_DDH" />
+              <PropertyRef Name="MA_DDH" />
             </Principal>
             <Dependent Role="CT_DDH">
-              <PropertyRef Name="ID_DDH" />
+              <PropertyRef Name="MA_DDH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CT_DDH_SanPham">
-          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+        <Association Name="FK_CT_DDH_SanPham1">
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
           <End Role="CT_DDH" Type="Self.CT_DDH" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SANPHAM">
-              <PropertyRef Name="ID_SP" />
+            <Principal Role="SanPham">
+              <PropertyRef Name="MA_SP" />
             </Principal>
             <Dependent Role="CT_DDH">
-              <PropertyRef Name="ID_SP" />
+              <PropertyRef Name="MA_SP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -241,10 +247,10 @@
           <End Role="CT_KM" Type="Self.CT_KM" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DONGSANPHAM">
-              <PropertyRef Name="ID_DSP" />
+              <PropertyRef Name="MA_DSP" />
             </Principal>
             <Dependent Role="CT_KM">
-              <PropertyRef Name="ID_DSP" />
+              <PropertyRef Name="MA_DSP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -253,10 +259,10 @@
           <End Role="CT_KM" Type="Self.CT_KM" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KHUYENMAI">
-              <PropertyRef Name="ID_KM" />
+              <PropertyRef Name="MA_KM" />
             </Principal>
             <Dependent Role="CT_KM">
-              <PropertyRef Name="ID_KM" />
+              <PropertyRef Name="MA_KM" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -273,14 +279,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CT_PHIEUDAT_SanPham">
-          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
           <End Role="CT_PHIEUDAT" Type="Self.CT_PHIEUDAT" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SANPHAM">
-              <PropertyRef Name="ID_SP" />
+            <Principal Role="SanPham">
+              <PropertyRef Name="MA_SP" />
             </Principal>
             <Dependent Role="CT_PHIEUDAT">
-              <PropertyRef Name="ID_SP" />
+              <PropertyRef Name="MA_SP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -289,22 +295,22 @@
           <End Role="CT_PHIEUNHAP" Type="Self.CT_PHIEUNHAP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PHIEUNHAP">
-              <PropertyRef Name="ID_PHIEUNHAP" />
+              <PropertyRef Name="MA_PHIEUNHAP" />
             </Principal>
             <Dependent Role="CT_PHIEUNHAP">
-              <PropertyRef Name="ID_PHIEUNHAP" />
+              <PropertyRef Name="MA_PHIEUNHAP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CT_PHIEUNHAP_SanPham">
-          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
           <End Role="CT_PHIEUNHAP" Type="Self.CT_PHIEUNHAP" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SANPHAM">
-              <PropertyRef Name="ID_SP" />
+            <Principal Role="SanPham">
+              <PropertyRef Name="MA_SP" />
             </Principal>
             <Dependent Role="CT_PHIEUNHAP">
-              <PropertyRef Name="ID_SP" />
+              <PropertyRef Name="MA_SP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -313,12 +319,10 @@
           <End Role="CT_PHIEUTRA" Type="Self.CT_PHIEUTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CT_PHIEUDAT">
-              <PropertyRef Name="ID_PHIEUDAT" />
-              <PropertyRef Name="ID_SP" />
+              <PropertyRef Name="ID_CTPD" />
             </Principal>
             <Dependent Role="CT_PHIEUTRA">
-              <PropertyRef Name="ID_PHIEUDAT" />
-              <PropertyRef Name="ID_SP" />
+              <PropertyRef Name="ID_CTPD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -327,10 +331,10 @@
           <End Role="CT_PHIEUTRA" Type="Self.CT_PHIEUTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PHIEUTRA">
-              <PropertyRef Name="ID_PHIEUTRA" />
+              <PropertyRef Name="MA_PHIEUTRA" />
             </Principal>
             <Dependent Role="CT_PHIEUTRA">
-              <PropertyRef Name="ID_PHIEUTRA" />
+              <PropertyRef Name="MA_PHIEUTRA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -339,10 +343,10 @@
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HANG">
-              <PropertyRef Name="ID_HANG" />
+              <PropertyRef Name="MA_HANG" />
             </Principal>
             <Dependent Role="DONDATHANG">
-              <PropertyRef Name="ID_HANG" />
+              <PropertyRef Name="MA_HANG" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -351,22 +355,10 @@
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Principal>
             <Dependent Role="DONDATHANG">
-              <PropertyRef Name="ID_NV" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DONDATHANG_PHIEUNHAP">
-          <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="0..1" />
-          <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PHIEUNHAP">
-              <PropertyRef Name="ID_PHIEUNHAP" />
-            </Principal>
-            <Dependent Role="DONDATHANG">
-              <PropertyRef Name="ID_PHIEUNHAP" />
+              <PropertyRef Name="MA_NV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -375,10 +367,10 @@
           <End Role="DONGSANPHAM" Type="Self.DONGSANPHAM" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HANG">
-              <PropertyRef Name="ID_HANG" />
+              <PropertyRef Name="MA_HANG" />
             </Principal>
             <Dependent Role="DONGSANPHAM">
-              <PropertyRef Name="ID_HANG" />
+              <PropertyRef Name="MA_HANG" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -387,10 +379,10 @@
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Principal>
             <Dependent Role="HOADON">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -399,10 +391,10 @@
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN_GH">
-              <PropertyRef Name="ID_NVGH" />
+              <PropertyRef Name="MA_NVGH" />
             </Principal>
             <Dependent Role="HOADON">
-              <PropertyRef Name="ID_NVGH" />
+              <PropertyRef Name="MA_NVGH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -419,14 +411,26 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_KHUYENMAI_NhanVien">
-          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
           <End Role="KHUYENMAI" Type="Self.KHUYENMAI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Principal>
             <Dependent Role="KHUYENMAI">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NGAY_SanPham">
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+          <End Role="THAYDOIGIA" Type="Self.THAYDOIGIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="MA_SP" />
+            </Principal>
+            <Dependent Role="THAYDOIGIA">
+              <PropertyRef Name="MA_SP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -435,10 +439,10 @@
           <End Role="NHANVIEN_GH" Type="Self.NHANVIEN_GH" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CTVC">
-              <PropertyRef Name="ID_CTVC" />
+              <PropertyRef Name="MA_CTVC" />
             </Principal>
             <Dependent Role="NHANVIEN_GH">
-              <PropertyRef Name="ID_CTVC" />
+              <PropertyRef Name="MA_CTVC" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -447,10 +451,10 @@
           <End Role="PHIEUDAT" Type="Self.PHIEUDAT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KHACHHANG">
-              <PropertyRef Name="ID_KH" />
+              <PropertyRef Name="MA_KH" />
             </Principal>
             <Dependent Role="PHIEUDAT">
-              <PropertyRef Name="ID_KH" />
+              <PropertyRef Name="MA_KH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -459,10 +463,10 @@
           <End Role="PHIEUDAT" Type="Self.PHIEUDAT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Principal>
             <Dependent Role="PHIEUDAT">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -471,22 +475,22 @@
           <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DONDATHANG">
-              <PropertyRef Name="ID_DDH" />
+              <PropertyRef Name="MA_DDH" />
             </Principal>
             <Dependent Role="PHIEUNHAP">
-              <PropertyRef Name="ID_DDH" />
+              <PropertyRef Name="MA_DDH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PHIEUNHAP_NhanVien">
+        <Association Name="FK_PHIEUNHAP_NhanVien1">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
           <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Principal>
             <Dependent Role="PHIEUNHAP">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -495,10 +499,10 @@
           <End Role="PHIEUTRA" Type="Self.PHIEUTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HOADON">
-              <PropertyRef Name="ID_HOADON" />
+              <PropertyRef Name="MA_HOADON" />
             </Principal>
             <Dependent Role="PHIEUTRA">
-              <PropertyRef Name="ID_HOADON" />
+              <PropertyRef Name="MA_HOADON" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -507,20 +511,62 @@
           <End Role="PHIEUTRA" Type="Self.PHIEUTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Principal>
             <Dependent Role="PHIEUTRA">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="get_all_employee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="get_all_line_perfume" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="get_all_perfume_by_DSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
+        <Association Name="FK_SanPham_DONGSANPHAM">
+          <End Role="DONGSANPHAM" Type="Self.DONGSANPHAM" Multiplicity="0..1" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONGSANPHAM">
+              <PropertyRef Name="MA_DSP" />
+            </Principal>
+            <Dependent Role="SanPham">
+              <PropertyRef Name="MA_DSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="discount_line_perfume" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_all_discount_line_perfume" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_all_hang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_all_invoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_all_line_perfume_km" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_all_linePerfume_by_DSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MA_DSP" Type="nchar" Mode="In" />
         </Function>
+        <Function Name="get_all_perfume" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="get_all_perfume_by_hang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="MA_HANG" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="get_all_phieudat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_all_PN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_all_product" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_all_shipper" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_all_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_CTDDH_by_MADDH_MASP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maddh" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="get_discount_line_perfume" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_DSP_KM_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_employee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_line_product_for_display" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_name_product_belong_hang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MAHANG" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="get_order_by_status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TRANGTHAI" Type="int" Mode="In" />
+        </Function>
+        <Function Name="get_order_follow_user_by_status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MAKH" Type="nchar" Mode="In" />
+          <Parameter Name="status" Type="int" Mode="In" />
+        </Function>
+        <Function Name="get_order_supply" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_order_supply_by_status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="status" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="PERFUMEModelStoreContainer">
           <EntitySet Name="CT_DDH" EntityType="Self.CT_DDH" Schema="dbo" store:Type="Tables" />
@@ -540,14 +586,15 @@
           <EntitySet Name="PHIEUDAT" EntityType="Self.PHIEUDAT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHIEUNHAP" EntityType="Self.PHIEUNHAP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHIEUTRA" EntityType="Self.PHIEUTRA" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THAYDOIGIA" EntityType="Self.THAYDOIGIA" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CT_DDH_DONDATHANG" Association="Self.FK_CT_DDH_DONDATHANG">
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
             <End Role="CT_DDH" EntitySet="CT_DDH" />
           </AssociationSet>
-          <AssociationSet Name="FK_CT_DDH_SanPham" Association="Self.FK_CT_DDH_SanPham">
-            <End Role="SANPHAM" EntitySet="SANPHAM" />
+          <AssociationSet Name="FK_CT_DDH_SanPham1" Association="Self.FK_CT_DDH_SanPham1">
+            <End Role="SanPham" EntitySet="SanPham" />
             <End Role="CT_DDH" EntitySet="CT_DDH" />
           </AssociationSet>
           <AssociationSet Name="FK_CT_KM_DONGSANPHAM" Association="Self.FK_CT_KM_DONGSANPHAM">
@@ -563,7 +610,7 @@
             <End Role="CT_PHIEUDAT" EntitySet="CT_PHIEUDAT" />
           </AssociationSet>
           <AssociationSet Name="FK_CT_PHIEUDAT_SanPham" Association="Self.FK_CT_PHIEUDAT_SanPham">
-            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="SanPham" EntitySet="SanPham" />
             <End Role="CT_PHIEUDAT" EntitySet="CT_PHIEUDAT" />
           </AssociationSet>
           <AssociationSet Name="FK_CT_PHIEUNHAP_PHIEUNHAP" Association="Self.FK_CT_PHIEUNHAP_PHIEUNHAP">
@@ -571,7 +618,7 @@
             <End Role="CT_PHIEUNHAP" EntitySet="CT_PHIEUNHAP" />
           </AssociationSet>
           <AssociationSet Name="FK_CT_PHIEUNHAP_SanPham" Association="Self.FK_CT_PHIEUNHAP_SanPham">
-            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="SanPham" EntitySet="SanPham" />
             <End Role="CT_PHIEUNHAP" EntitySet="CT_PHIEUNHAP" />
           </AssociationSet>
           <AssociationSet Name="FK_CT_PHIEUTRA_CT_PHIEUDAT" Association="Self.FK_CT_PHIEUTRA_CT_PHIEUDAT">
@@ -588,10 +635,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_DONDATHANG_NhanVien" Association="Self.FK_DONDATHANG_NhanVien">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
-            <End Role="DONDATHANG" EntitySet="DONDATHANG" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DONDATHANG_PHIEUNHAP" Association="Self.FK_DONDATHANG_PHIEUNHAP">
-            <End Role="PHIEUNHAP" EntitySet="PHIEUNHAP" />
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
           </AssociationSet>
           <AssociationSet Name="FK_DONGSANPHAM_HANG" Association="Self.FK_DONGSANPHAM_HANG">
@@ -614,6 +657,10 @@
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="KHUYENMAI" EntitySet="KHUYENMAI" />
           </AssociationSet>
+          <AssociationSet Name="FK_NGAY_SanPham" Association="Self.FK_NGAY_SanPham">
+            <End Role="SanPham" EntitySet="SanPham" />
+            <End Role="THAYDOIGIA" EntitySet="THAYDOIGIA" />
+          </AssociationSet>
           <AssociationSet Name="FK_NHANVIEN_GH_CTVC" Association="Self.FK_NHANVIEN_GH_CTVC">
             <End Role="CTVC" EntitySet="CTVC" />
             <End Role="NHANVIEN_GH" EntitySet="NHANVIEN_GH" />
@@ -630,7 +677,7 @@
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
             <End Role="PHIEUNHAP" EntitySet="PHIEUNHAP" />
           </AssociationSet>
-          <AssociationSet Name="FK_PHIEUNHAP_NhanVien" Association="Self.FK_PHIEUNHAP_NhanVien">
+          <AssociationSet Name="FK_PHIEUNHAP_NhanVien1" Association="Self.FK_PHIEUNHAP_NhanVien1">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="PHIEUNHAP" EntitySet="PHIEUNHAP" />
           </AssociationSet>
@@ -642,120 +689,122 @@
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="PHIEUTRA" EntitySet="PHIEUTRA" />
           </AssociationSet>
+          <AssociationSet Name="FK_SanPham_DONGSANPHAM" Association="Self.FK_SanPham_DONGSANPHAM">
+            <End Role="DONGSANPHAM" EntitySet="DONGSANPHAM" />
+            <End Role="SanPham" EntitySet="SanPham" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PERFUMEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="CT_DDH">
           <Key>
-            <PropertyRef Name="ID_DDH" />
-            <PropertyRef Name="ID_SP" />
+            <PropertyRef Name="MA_DDH" />
+            <PropertyRef Name="MA_SP" />
           </Key>
-          <Property Name="ID_DDH" Type="Int32" Nullable="false" />
-          <Property Name="ID_SP" Type="Int32" Nullable="false" />
-          <Property Name="SOLUONG" Type="Int32" />
-          <Property Name="GIA" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MA_DDH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="MA_SP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SOLUONG" Type="Int32" Nullable="false" />
+          <Property Name="GIA" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DONDATHANG" Relationship="Self.FK_CT_DDH_DONDATHANG" FromRole="CT_DDH" ToRole="DONDATHANG" />
-          <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CT_DDH_SanPham" FromRole="CT_DDH" ToRole="SANPHAM" />
+          <NavigationProperty Name="SanPham" Relationship="Self.FK_CT_DDH_SanPham1" FromRole="CT_DDH" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="CT_KM">
           <Key>
-            <PropertyRef Name="ID_KM" />
-            <PropertyRef Name="ID_DSP" />
+            <PropertyRef Name="MA_KM" />
+            <PropertyRef Name="MA_DSP" />
           </Key>
-          <Property Name="ID_KM" Type="Int32" Nullable="false" />
-          <Property Name="ID_DSP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="MA_KM" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="MA_DSP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="PHANTRAMKM" Type="Double" Nullable="false" />
           <NavigationProperty Name="DONGSANPHAM" Relationship="Self.FK_CT_KM_DONGSANPHAM" FromRole="CT_KM" ToRole="DONGSANPHAM" />
           <NavigationProperty Name="KHUYENMAI" Relationship="Self.FK_CT_KM_KHUYENMAI" FromRole="CT_KM" ToRole="KHUYENMAI" />
         </EntityType>
         <EntityType Name="CT_PHIEUDAT">
           <Key>
-            <PropertyRef Name="ID_PHIEUDAT" />
-            <PropertyRef Name="ID_SP" />
+            <PropertyRef Name="ID_CTPD" />
           </Key>
+          <Property Name="ID_CTPD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_PHIEUDAT" Type="Int32" Nullable="false" />
-          <Property Name="ID_SP" Type="Int32" Nullable="false" />
+          <Property Name="MA_SP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="SOLUONG" Type="Int32" Nullable="false" />
           <Property Name="GIA" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PHIEUDAT" Relationship="Self.FK_CT_PHIEUDAT_PHIEUDAT" FromRole="CT_PHIEUDAT" ToRole="PHIEUDAT" />
-          <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CT_PHIEUDAT_SanPham" FromRole="CT_PHIEUDAT" ToRole="SANPHAM" />
+          <NavigationProperty Name="SanPham" Relationship="Self.FK_CT_PHIEUDAT_SanPham" FromRole="CT_PHIEUDAT" ToRole="SanPham" />
           <NavigationProperty Name="CT_PHIEUTRA" Relationship="Self.FK_CT_PHIEUTRA_CT_PHIEUDAT" FromRole="CT_PHIEUDAT" ToRole="CT_PHIEUTRA" />
         </EntityType>
         <EntityType Name="CT_PHIEUNHAP">
           <Key>
-            <PropertyRef Name="ID_PHIEUNHAP" />
-            <PropertyRef Name="ID_SP" />
+            <PropertyRef Name="MA_PHIEUNHAP" />
+            <PropertyRef Name="MA_SP" />
           </Key>
-          <Property Name="ID_PHIEUNHAP" Type="Int32" Nullable="false" />
-          <Property Name="ID_SP" Type="Int32" Nullable="false" />
-          <Property Name="SOLUONG" Type="Int32" />
-          <Property Name="GIA" Type="Int32" />
+          <Property Name="MA_PHIEUNHAP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="MA_SP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SOLUONG" Type="Int32" Nullable="false" />
+          <Property Name="GIA" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PHIEUNHAP" Relationship="Self.FK_CT_PHIEUNHAP_PHIEUNHAP" FromRole="CT_PHIEUNHAP" ToRole="PHIEUNHAP" />
-          <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CT_PHIEUNHAP_SanPham" FromRole="CT_PHIEUNHAP" ToRole="SANPHAM" />
+          <NavigationProperty Name="SanPham" Relationship="Self.FK_CT_PHIEUNHAP_SanPham" FromRole="CT_PHIEUNHAP" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="CT_PHIEUTRA">
           <Key>
-            <PropertyRef Name="ID_PHIEUTRA" />
-            <PropertyRef Name="ID_PHIEUDAT" />
-            <PropertyRef Name="ID_SP" />
+            <PropertyRef Name="MA_PHIEUTRA" />
+            <PropertyRef Name="ID_CTPD" />
           </Key>
-          <Property Name="ID_PHIEUTRA" Type="Int32" Nullable="false" />
-          <Property Name="ID_PHIEUDAT" Type="Int32" Nullable="false" />
-          <Property Name="ID_SP" Type="Int32" Nullable="false" />
-          <Property Name="SOLUONG" Type="Int32" />
+          <Property Name="MA_PHIEUTRA" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ID_CTPD" Type="Int32" Nullable="false" />
+          <Property Name="SOLUONG" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CT_PHIEUDAT" Relationship="Self.FK_CT_PHIEUTRA_CT_PHIEUDAT" FromRole="CT_PHIEUTRA" ToRole="CT_PHIEUDAT" />
           <NavigationProperty Name="PHIEUTRA" Relationship="Self.FK_CT_PHIEUTRA_PHIEUTRA" FromRole="CT_PHIEUTRA" ToRole="PHIEUTRA" />
         </EntityType>
         <EntityType Name="CTVC">
           <Key>
-            <PropertyRef Name="ID_CTVC" />
+            <PropertyRef Name="MA_CTVC" />
           </Key>
-          <Property Name="ID_CTVC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_CTVC" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DIACHI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SODIENTHOAI" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="NHANVIEN_GH" Relationship="Self.FK_NHANVIEN_GH_CTVC" FromRole="CTVC" ToRole="NHANVIEN_GH" />
         </EntityType>
         <EntityType Name="DONDATHANG">
           <Key>
-            <PropertyRef Name="ID_DDH" />
+            <PropertyRef Name="MA_DDH" />
           </Key>
-          <Property Name="ID_DDH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_DDH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="NGAYDAT" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TRANGTHAI" Type="Int32" Nullable="false" />
           <Property Name="NGAYNHANHANG" Type="DateTime" Precision="3" />
-          <Property Name="ID_HANG" Type="Int32" />
-          <Property Name="ID_PHIEUNHAP" Type="Int32" />
-          <Property Name="ID_NV" Type="Int32" />
+          <Property Name="MA_HANG" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MA_NV" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="CT_DDH" Relationship="Self.FK_CT_DDH_DONDATHANG" FromRole="DONDATHANG" ToRole="CT_DDH" />
           <NavigationProperty Name="HANG" Relationship="Self.FK_DONDATHANG_HANG" FromRole="DONDATHANG" ToRole="HANG" />
           <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_DONDATHANG_NhanVien" FromRole="DONDATHANG" ToRole="NHANVIEN" />
-          <NavigationProperty Name="PHIEUNHAP" Relationship="Self.FK_DONDATHANG_PHIEUNHAP" FromRole="DONDATHANG" ToRole="PHIEUNHAP" />
           <NavigationProperty Name="PHIEUNHAPs" Relationship="Self.FK_PHIEUNHAP_DONDATHANG" FromRole="DONDATHANG" ToRole="PHIEUNHAP" />
         </EntityType>
         <EntityType Name="DONGSANPHAM">
           <Key>
-            <PropertyRef Name="ID_DSP" />
+            <PropertyRef Name="MA_DSP" />
           </Key>
-          <Property Name="ID_DSP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="MA_DSP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="GIOITINH" Type="Boolean" Nullable="false" />
           <Property Name="XUATXU" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MOTA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="HINHANH" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HINHANH" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DOLUUHUONG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ID_HANG" Type="Int32" />
+          <Property Name="MA_HANG" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="CT_KM" Relationship="Self.FK_CT_KM_DONGSANPHAM" FromRole="DONGSANPHAM" ToRole="CT_KM" />
           <NavigationProperty Name="HANG" Relationship="Self.FK_DONGSANPHAM_HANG" FromRole="DONGSANPHAM" ToRole="HANG" />
+          <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_DONGSANPHAM" FromRole="DONGSANPHAM" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="HANG">
           <Key>
-            <PropertyRef Name="ID_HANG" />
+            <PropertyRef Name="MA_HANG" />
           </Key>
-          <Property Name="ID_HANG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_HANG" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="TENHANG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SODIENTHOAI" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
@@ -765,15 +814,15 @@
         </EntityType>
         <EntityType Name="HOADON">
           <Key>
-            <PropertyRef Name="ID_HOADON" />
+            <PropertyRef Name="MA_HOADON" />
           </Key>
-          <Property Name="ID_HOADON" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_HOADON" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="NGAYTAOHD" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TONGTIEN" Type="Int32" Nullable="false" />
-          <Property Name="SOTHUE" Type="Int32" Nullable="false" />
+          <Property Name="MASOTHUE" Type="Int32" Nullable="false" />
           <Property Name="ID_PHIEUDAT" Type="Int32" />
-          <Property Name="ID_NV" Type="Int32" />
-          <Property Name="ID_NVGH" Type="Int32" />
+          <Property Name="MA_NV" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MA_NVGH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_HOADON_NhanVien" FromRole="HOADON" ToRole="NHANVIEN" />
           <NavigationProperty Name="NHANVIEN_GH" Relationship="Self.FK_HOADON_NHANVIEN_GH" FromRole="HOADON" ToRole="NHANVIEN_GH" />
           <NavigationProperty Name="PHIEUDAT" Relationship="Self.FK_HOADON_PHIEUDAT" FromRole="HOADON" ToRole="PHIEUDAT" />
@@ -781,9 +830,9 @@
         </EntityType>
         <EntityType Name="KHACHHANG">
           <Key>
-            <PropertyRef Name="ID_KH" />
+            <PropertyRef Name="MA_KH" />
           </Key>
-          <Property Name="ID_KH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_KH" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="HOTEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NGAYSINH" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DIACHI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
@@ -794,45 +843,45 @@
         </EntityType>
         <EntityType Name="KHUYENMAI">
           <Key>
-            <PropertyRef Name="ID_KM" />
+            <PropertyRef Name="MA_KM" />
           </Key>
-          <Property Name="ID_KM" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_KM" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NGAYBD" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="NGAYKT" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MOTA" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ID_NV" Type="Int32" />
+          <Property Name="MA_NV" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="CT_KM" Relationship="Self.FK_CT_KM_KHUYENMAI" FromRole="KHUYENMAI" ToRole="CT_KM" />
           <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_KHUYENMAI_NhanVien" FromRole="KHUYENMAI" ToRole="NHANVIEN" />
         </EntityType>
         <EntityType Name="NHANVIEN">
           <Key>
-            <PropertyRef Name="ID_NV" />
+            <PropertyRef Name="MA_NV" />
           </Key>
-          <Property Name="ID_NV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_NV" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="HOTEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NGAYSINH" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DIACHI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SODIENTHOAI" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="EMIAL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PASS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="DONDATHANGs" Relationship="Self.FK_DONDATHANG_NhanVien" FromRole="NHANVIEN" ToRole="DONDATHANG" />
           <NavigationProperty Name="HOADONs" Relationship="Self.FK_HOADON_NhanVien" FromRole="NHANVIEN" ToRole="HOADON" />
           <NavigationProperty Name="KHUYENMAIs" Relationship="Self.FK_KHUYENMAI_NhanVien" FromRole="NHANVIEN" ToRole="KHUYENMAI" />
           <NavigationProperty Name="PHIEUDATs" Relationship="Self.FK_PHIEUDAT_NhanVien" FromRole="NHANVIEN" ToRole="PHIEUDAT" />
-          <NavigationProperty Name="PHIEUNHAPs" Relationship="Self.FK_PHIEUNHAP_NhanVien" FromRole="NHANVIEN" ToRole="PHIEUNHAP" />
+          <NavigationProperty Name="PHIEUNHAPs" Relationship="Self.FK_PHIEUNHAP_NhanVien1" FromRole="NHANVIEN" ToRole="PHIEUNHAP" />
           <NavigationProperty Name="PHIEUTRAs" Relationship="Self.FK_PHIEUTRA_NhanVien" FromRole="NHANVIEN" ToRole="PHIEUTRA" />
         </EntityType>
         <EntityType Name="NHANVIEN_GH">
           <Key>
-            <PropertyRef Name="ID_NVGH" />
+            <PropertyRef Name="MA_NVGH" />
           </Key>
-          <Property Name="ID_NVGH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_NVGH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="HOTEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SODIENTHOAI" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="NGAYSINH" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ID_CTVC" Type="Int32" />
+          <Property Name="MA_CTVC" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="CTVC" Relationship="Self.FK_NHANVIEN_GH_CTVC" FromRole="NHANVIEN_GH" ToRole="CTVC" />
           <NavigationProperty Name="HOADONs" Relationship="Self.FK_HOADON_NHANVIEN_GH" FromRole="NHANVIEN_GH" ToRole="HOADON" />
         </EntityType>
@@ -845,10 +894,11 @@
           <Property Name="SODIENTHOAI" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="DIACHI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NGAYDAT" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="NGAYGIAO" Type="DateTime" Precision="3" />
-          <Property Name="TRANGTHAI" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ID_KH" Type="Int32" />
-          <Property Name="ID_NV" Type="Int32" />
+          <Property Name="NGAYGIAO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TRANGTHAI" Type="Int32" Nullable="false" />
+          <Property Name="MA_KH" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="MA_NV" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TRANSACTIONID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="CT_PHIEUDAT" Relationship="Self.FK_CT_PHIEUDAT_PHIEUDAT" FromRole="PHIEUDAT" ToRole="CT_PHIEUDAT" />
           <NavigationProperty Name="HOADONs" Relationship="Self.FK_HOADON_PHIEUDAT" FromRole="PHIEUDAT" ToRole="HOADON" />
           <NavigationProperty Name="KHACHHANG" Relationship="Self.FK_PHIEUDAT_KhachHang" FromRole="PHIEUDAT" ToRole="KHACHHANG" />
@@ -856,43 +906,43 @@
         </EntityType>
         <EntityType Name="PHIEUNHAP">
           <Key>
-            <PropertyRef Name="ID_PHIEUNHAP" />
+            <PropertyRef Name="MA_PHIEUNHAP" />
           </Key>
-          <Property Name="ID_PHIEUNHAP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_PHIEUNHAP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="NGAYTAO" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ID_NV" Type="Int32" />
-          <Property Name="ID_DDH" Type="Int32" />
+          <Property Name="MA_NV" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MA_DDH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="CT_PHIEUNHAP" Relationship="Self.FK_CT_PHIEUNHAP_PHIEUNHAP" FromRole="PHIEUNHAP" ToRole="CT_PHIEUNHAP" />
-          <NavigationProperty Name="DONDATHANGs" Relationship="Self.FK_DONDATHANG_PHIEUNHAP" FromRole="PHIEUNHAP" ToRole="DONDATHANG" />
           <NavigationProperty Name="DONDATHANG" Relationship="Self.FK_PHIEUNHAP_DONDATHANG" FromRole="PHIEUNHAP" ToRole="DONDATHANG" />
-          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_PHIEUNHAP_NhanVien" FromRole="PHIEUNHAP" ToRole="NHANVIEN" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_PHIEUNHAP_NhanVien1" FromRole="PHIEUNHAP" ToRole="NHANVIEN" />
         </EntityType>
         <EntityType Name="PHIEUTRA">
           <Key>
-            <PropertyRef Name="ID_PHIEUTRA" />
+            <PropertyRef Name="MA_PHIEUTRA" />
           </Key>
-          <Property Name="ID_PHIEUTRA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_PHIEUTRA" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="NGAYTRA" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LYDO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ID_HOADON" Type="Int32" />
-          <Property Name="ID_NV" Type="Int32" />
+          <Property Name="MA_HOADON" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MA_NV" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="CT_PHIEUTRA" Relationship="Self.FK_CT_PHIEUTRA_PHIEUTRA" FromRole="PHIEUTRA" ToRole="CT_PHIEUTRA" />
           <NavigationProperty Name="HOADON" Relationship="Self.FK_PHIEUTRA_HOADON" FromRole="PHIEUTRA" ToRole="HOADON" />
           <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_PHIEUTRA_NhanVien" FromRole="PHIEUTRA" ToRole="NHANVIEN" />
         </EntityType>
-        <EntityType Name="SANPHAM">
+        <EntityType Name="SanPham">
           <Key>
-            <PropertyRef Name="ID_SP" />
+            <PropertyRef Name="MA_SP" />
           </Key>
-          <Property Name="ID_SP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_SP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="DUNGTICH" Type="Int32" Nullable="false" />
           <Property Name="GIA" Type="Int32" Nullable="false" />
           <Property Name="SOLUONGTON" Type="Int32" Nullable="false" />
-          <Property Name="ID_DSP" Type="String" MaxLength="6" FixedLength="true" Unicode="true" />
-          <Property Name="NGAYDOIGIA" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="CT_DDH" Relationship="Self.FK_CT_DDH_SanPham" FromRole="SANPHAM" ToRole="CT_DDH" />
-          <NavigationProperty Name="CT_PHIEUDAT" Relationship="Self.FK_CT_PHIEUDAT_SanPham" FromRole="SANPHAM" ToRole="CT_PHIEUDAT" />
-          <NavigationProperty Name="CT_PHIEUNHAP" Relationship="Self.FK_CT_PHIEUNHAP_SanPham" FromRole="SANPHAM" ToRole="CT_PHIEUNHAP" />
+          <Property Name="MA_DSP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="CT_DDH" Relationship="Self.FK_CT_DDH_SanPham1" FromRole="SanPham" ToRole="CT_DDH" />
+          <NavigationProperty Name="CT_PHIEUDAT" Relationship="Self.FK_CT_PHIEUDAT_SanPham" FromRole="SanPham" ToRole="CT_PHIEUDAT" />
+          <NavigationProperty Name="CT_PHIEUNHAP" Relationship="Self.FK_CT_PHIEUNHAP_SanPham" FromRole="SanPham" ToRole="CT_PHIEUNHAP" />
+          <NavigationProperty Name="DONGSANPHAM" Relationship="Self.FK_SanPham_DONGSANPHAM" FromRole="SanPham" ToRole="DONGSANPHAM" />
+          <NavigationProperty Name="THAYDOIGIAs" Relationship="Self.FK_NGAY_SanPham" FromRole="SanPham" ToRole="THAYDOIGIA" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -904,27 +954,37 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="THAYDOIGIA">
+          <Key>
+            <PropertyRef Name="MA_SP" />
+            <PropertyRef Name="NGAY" />
+          </Key>
+          <Property Name="MA_SP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="NGAY" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GIA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SanPham" Relationship="Self.FK_NGAY_SanPham" FromRole="THAYDOIGIA" ToRole="SanPham" />
+        </EntityType>
         <Association Name="FK_CT_DDH_DONDATHANG">
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="1" />
           <End Role="CT_DDH" Type="Self.CT_DDH" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DONDATHANG">
-              <PropertyRef Name="ID_DDH" />
+              <PropertyRef Name="MA_DDH" />
             </Principal>
             <Dependent Role="CT_DDH">
-              <PropertyRef Name="ID_DDH" />
+              <PropertyRef Name="MA_DDH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CT_DDH_SanPham">
-          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+        <Association Name="FK_CT_DDH_SanPham1">
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
           <End Role="CT_DDH" Type="Self.CT_DDH" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SANPHAM">
-              <PropertyRef Name="ID_SP" />
+            <Principal Role="SanPham">
+              <PropertyRef Name="MA_SP" />
             </Principal>
             <Dependent Role="CT_DDH">
-              <PropertyRef Name="ID_SP" />
+              <PropertyRef Name="MA_SP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -933,10 +993,10 @@
           <End Role="CT_KM" Type="Self.CT_KM" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DONGSANPHAM">
-              <PropertyRef Name="ID_DSP" />
+              <PropertyRef Name="MA_DSP" />
             </Principal>
             <Dependent Role="CT_KM">
-              <PropertyRef Name="ID_DSP" />
+              <PropertyRef Name="MA_DSP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -945,10 +1005,10 @@
           <End Role="CT_KM" Type="Self.CT_KM" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KHUYENMAI">
-              <PropertyRef Name="ID_KM" />
+              <PropertyRef Name="MA_KM" />
             </Principal>
             <Dependent Role="CT_KM">
-              <PropertyRef Name="ID_KM" />
+              <PropertyRef Name="MA_KM" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -965,14 +1025,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CT_PHIEUDAT_SanPham">
-          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
           <End Role="CT_PHIEUDAT" Type="Self.CT_PHIEUDAT" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SANPHAM">
-              <PropertyRef Name="ID_SP" />
+            <Principal Role="SanPham">
+              <PropertyRef Name="MA_SP" />
             </Principal>
             <Dependent Role="CT_PHIEUDAT">
-              <PropertyRef Name="ID_SP" />
+              <PropertyRef Name="MA_SP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -981,12 +1041,10 @@
           <End Role="CT_PHIEUTRA" Type="Self.CT_PHIEUTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CT_PHIEUDAT">
-              <PropertyRef Name="ID_PHIEUDAT" />
-              <PropertyRef Name="ID_SP" />
+              <PropertyRef Name="ID_CTPD" />
             </Principal>
             <Dependent Role="CT_PHIEUTRA">
-              <PropertyRef Name="ID_PHIEUDAT" />
-              <PropertyRef Name="ID_SP" />
+              <PropertyRef Name="ID_CTPD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -995,22 +1053,22 @@
           <End Role="CT_PHIEUNHAP" Type="Self.CT_PHIEUNHAP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PHIEUNHAP">
-              <PropertyRef Name="ID_PHIEUNHAP" />
+              <PropertyRef Name="MA_PHIEUNHAP" />
             </Principal>
             <Dependent Role="CT_PHIEUNHAP">
-              <PropertyRef Name="ID_PHIEUNHAP" />
+              <PropertyRef Name="MA_PHIEUNHAP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CT_PHIEUNHAP_SanPham">
-          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
           <End Role="CT_PHIEUNHAP" Type="Self.CT_PHIEUNHAP" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SANPHAM">
-              <PropertyRef Name="ID_SP" />
+            <Principal Role="SanPham">
+              <PropertyRef Name="MA_SP" />
             </Principal>
             <Dependent Role="CT_PHIEUNHAP">
-              <PropertyRef Name="ID_SP" />
+              <PropertyRef Name="MA_SP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1019,10 +1077,10 @@
           <End Role="CT_PHIEUTRA" Type="Self.CT_PHIEUTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PHIEUTRA">
-              <PropertyRef Name="ID_PHIEUTRA" />
+              <PropertyRef Name="MA_PHIEUTRA" />
             </Principal>
             <Dependent Role="CT_PHIEUTRA">
-              <PropertyRef Name="ID_PHIEUTRA" />
+              <PropertyRef Name="MA_PHIEUTRA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1031,10 +1089,10 @@
           <End Role="NHANVIEN_GH" Type="Self.NHANVIEN_GH" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CTVC">
-              <PropertyRef Name="ID_CTVC" />
+              <PropertyRef Name="MA_CTVC" />
             </Principal>
             <Dependent Role="NHANVIEN_GH">
-              <PropertyRef Name="ID_CTVC" />
+              <PropertyRef Name="MA_CTVC" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1043,10 +1101,10 @@
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HANG">
-              <PropertyRef Name="ID_HANG" />
+              <PropertyRef Name="MA_HANG" />
             </Principal>
             <Dependent Role="DONDATHANG">
-              <PropertyRef Name="ID_HANG" />
+              <PropertyRef Name="MA_HANG" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1055,22 +1113,10 @@
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Principal>
             <Dependent Role="DONDATHANG">
-              <PropertyRef Name="ID_NV" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DONDATHANG_PHIEUNHAP">
-          <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="0..1" />
-          <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PHIEUNHAP">
-              <PropertyRef Name="ID_PHIEUNHAP" />
-            </Principal>
-            <Dependent Role="DONDATHANG">
-              <PropertyRef Name="ID_PHIEUNHAP" />
+              <PropertyRef Name="MA_NV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1079,10 +1125,10 @@
           <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DONDATHANG">
-              <PropertyRef Name="ID_DDH" />
+              <PropertyRef Name="MA_DDH" />
             </Principal>
             <Dependent Role="PHIEUNHAP">
-              <PropertyRef Name="ID_DDH" />
+              <PropertyRef Name="MA_DDH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1091,10 +1137,22 @@
           <End Role="DONGSANPHAM" Type="Self.DONGSANPHAM" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HANG">
-              <PropertyRef Name="ID_HANG" />
+              <PropertyRef Name="MA_HANG" />
             </Principal>
             <Dependent Role="DONGSANPHAM">
-              <PropertyRef Name="ID_HANG" />
+              <PropertyRef Name="MA_HANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SanPham_DONGSANPHAM">
+          <End Role="DONGSANPHAM" Type="Self.DONGSANPHAM" Multiplicity="0..1" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONGSANPHAM">
+              <PropertyRef Name="MA_DSP" />
+            </Principal>
+            <Dependent Role="SanPham">
+              <PropertyRef Name="MA_DSP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1103,10 +1161,10 @@
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Principal>
             <Dependent Role="HOADON">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1115,10 +1173,10 @@
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN_GH">
-              <PropertyRef Name="ID_NVGH" />
+              <PropertyRef Name="MA_NVGH" />
             </Principal>
             <Dependent Role="HOADON">
-              <PropertyRef Name="ID_NVGH" />
+              <PropertyRef Name="MA_NVGH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1139,10 +1197,10 @@
           <End Role="PHIEUTRA" Type="Self.PHIEUTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HOADON">
-              <PropertyRef Name="ID_HOADON" />
+              <PropertyRef Name="MA_HOADON" />
             </Principal>
             <Dependent Role="PHIEUTRA">
-              <PropertyRef Name="ID_HOADON" />
+              <PropertyRef Name="MA_HOADON" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1151,22 +1209,22 @@
           <End Role="PHIEUDAT" Type="Self.PHIEUDAT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KHACHHANG">
-              <PropertyRef Name="ID_KH" />
+              <PropertyRef Name="MA_KH" />
             </Principal>
             <Dependent Role="PHIEUDAT">
-              <PropertyRef Name="ID_KH" />
+              <PropertyRef Name="MA_KH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_KHUYENMAI_NhanVien">
-          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
           <End Role="KHUYENMAI" Type="Self.KHUYENMAI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Principal>
             <Dependent Role="KHUYENMAI">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1175,22 +1233,22 @@
           <End Role="PHIEUDAT" Type="Self.PHIEUDAT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Principal>
             <Dependent Role="PHIEUDAT">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PHIEUNHAP_NhanVien">
+        <Association Name="FK_PHIEUNHAP_NhanVien1">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
           <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Principal>
             <Dependent Role="PHIEUNHAP">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1199,14 +1257,26 @@
           <End Role="PHIEUTRA" Type="Self.PHIEUTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Principal>
             <Dependent Role="PHIEUTRA">
-              <PropertyRef Name="ID_NV" />
+              <PropertyRef Name="MA_NV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PERFUMEEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_NGAY_SanPham">
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+          <End Role="THAYDOIGIA" Type="Self.THAYDOIGIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="MA_SP" />
+            </Principal>
+            <Dependent Role="THAYDOIGIA">
+              <PropertyRef Name="MA_SP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PerfumeEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CT_DDH" EntityType="Self.CT_DDH" />
           <EntitySet Name="CT_KM" EntityType="Self.CT_KM" />
           <EntitySet Name="CT_PHIEUDAT" EntityType="Self.CT_PHIEUDAT" />
@@ -1224,14 +1294,15 @@
           <EntitySet Name="PHIEUDATs" EntityType="Self.PHIEUDAT" />
           <EntitySet Name="PHIEUNHAPs" EntityType="Self.PHIEUNHAP" />
           <EntitySet Name="PHIEUTRAs" EntityType="Self.PHIEUTRA" />
-          <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
+          <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="THAYDOIGIAs" EntityType="Self.THAYDOIGIA" />
           <AssociationSet Name="FK_CT_DDH_DONDATHANG" Association="Self.FK_CT_DDH_DONDATHANG">
             <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
             <End Role="CT_DDH" EntitySet="CT_DDH" />
           </AssociationSet>
-          <AssociationSet Name="FK_CT_DDH_SanPham" Association="Self.FK_CT_DDH_SanPham">
-            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+          <AssociationSet Name="FK_CT_DDH_SanPham1" Association="Self.FK_CT_DDH_SanPham1">
+            <End Role="SanPham" EntitySet="SanPhams" />
             <End Role="CT_DDH" EntitySet="CT_DDH" />
           </AssociationSet>
           <AssociationSet Name="FK_CT_KM_DONGSANPHAM" Association="Self.FK_CT_KM_DONGSANPHAM">
@@ -1247,7 +1318,7 @@
             <End Role="CT_PHIEUDAT" EntitySet="CT_PHIEUDAT" />
           </AssociationSet>
           <AssociationSet Name="FK_CT_PHIEUDAT_SanPham" Association="Self.FK_CT_PHIEUDAT_SanPham">
-            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+            <End Role="SanPham" EntitySet="SanPhams" />
             <End Role="CT_PHIEUDAT" EntitySet="CT_PHIEUDAT" />
           </AssociationSet>
           <AssociationSet Name="FK_CT_PHIEUTRA_CT_PHIEUDAT" Association="Self.FK_CT_PHIEUTRA_CT_PHIEUDAT">
@@ -1259,7 +1330,7 @@
             <End Role="CT_PHIEUNHAP" EntitySet="CT_PHIEUNHAP" />
           </AssociationSet>
           <AssociationSet Name="FK_CT_PHIEUNHAP_SanPham" Association="Self.FK_CT_PHIEUNHAP_SanPham">
-            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+            <End Role="SanPham" EntitySet="SanPhams" />
             <End Role="CT_PHIEUNHAP" EntitySet="CT_PHIEUNHAP" />
           </AssociationSet>
           <AssociationSet Name="FK_CT_PHIEUTRA_PHIEUTRA" Association="Self.FK_CT_PHIEUTRA_PHIEUTRA">
@@ -1278,10 +1349,6 @@
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
           </AssociationSet>
-          <AssociationSet Name="FK_DONDATHANG_PHIEUNHAP" Association="Self.FK_DONDATHANG_PHIEUNHAP">
-            <End Role="PHIEUNHAP" EntitySet="PHIEUNHAPs" />
-            <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
-          </AssociationSet>
           <AssociationSet Name="FK_PHIEUNHAP_DONDATHANG" Association="Self.FK_PHIEUNHAP_DONDATHANG">
             <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
             <End Role="PHIEUNHAP" EntitySet="PHIEUNHAPs" />
@@ -1289,6 +1356,10 @@
           <AssociationSet Name="FK_DONGSANPHAM_HANG" Association="Self.FK_DONGSANPHAM_HANG">
             <End Role="HANG" EntitySet="HANGs" />
             <End Role="DONGSANPHAM" EntitySet="DONGSANPHAMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SanPham_DONGSANPHAM" Association="Self.FK_SanPham_DONGSANPHAM">
+            <End Role="DONGSANPHAM" EntitySet="DONGSANPHAMs" />
+            <End Role="SanPham" EntitySet="SanPhams" />
           </AssociationSet>
           <AssociationSet Name="FK_HOADON_NhanVien" Association="Self.FK_HOADON_NhanVien">
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
@@ -1318,7 +1389,7 @@
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="PHIEUDAT" EntitySet="PHIEUDATs" />
           </AssociationSet>
-          <AssociationSet Name="FK_PHIEUNHAP_NhanVien" Association="Self.FK_PHIEUNHAP_NhanVien">
+          <AssociationSet Name="FK_PHIEUNHAP_NhanVien1" Association="Self.FK_PHIEUNHAP_NhanVien1">
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="PHIEUNHAP" EntitySet="PHIEUNHAPs" />
           </AssociationSet>
@@ -1326,63 +1397,281 @@
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="PHIEUTRA" EntitySet="PHIEUTRAs" />
           </AssociationSet>
-          <FunctionImport Name="get_all_employee" ReturnType="Collection(PERFUMEModel.get_all_employee_Result)" />
-          <FunctionImport Name="get_all_line_perfume" ReturnType="Collection(PERFUMEModel.get_all_line_perfume_Result)" />
-          <FunctionImport Name="get_all_perfume_by_hang" ReturnType="Collection(PERFUMEModel.get_all_perfume_by_hang_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
+          <AssociationSet Name="FK_NGAY_SanPham" Association="Self.FK_NGAY_SanPham">
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="THAYDOIGIA" EntitySet="THAYDOIGIAs" />
+          </AssociationSet>
+          <FunctionImport Name="discount_line_perfume" ReturnType="Collection(PERFUMEModel.discount_line_perfume_Result)" />
+          <FunctionImport Name="get_all_discount_line_perfume" ReturnType="Collection(PERFUMEModel.get_all_discount_line_perfume_Result)" />
+          <FunctionImport Name="get_all_hang" ReturnType="Collection(PERFUMEModel.get_all_hang_Result)" />
+          <FunctionImport Name="get_all_invoice" ReturnType="Collection(PERFUMEModel.get_all_invoice_Result)" />
+          <FunctionImport Name="get_all_line_perfume_km" ReturnType="Collection(PERFUMEModel.get_all_line_perfume_km_Result)" />
+          <FunctionImport Name="get_all_linePerfume_by_DSP" ReturnType="Collection(PERFUMEModel.get_all_linePerfume_by_DSP_Result)">
+            <Parameter Name="MA_DSP" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="get_all_perfume_by_DSP" ReturnType="Collection(PERFUMEModel.get_all_perfume_by_DSP_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <FunctionImport Name="get_all_perfume" ReturnType="Collection(PERFUMEModel.get_all_perfume_Result)" />
+          <FunctionImport Name="get_all_perfume_by_hang" ReturnType="Collection(PERFUMEModel.get_all_perfume_by_hang_Result)">
+            <Parameter Name="MA_HANG" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="get_all_phieudat" ReturnType="Collection(PERFUMEModel.get_all_phieudat_Result)" />
+          <FunctionImport Name="get_all_PN" ReturnType="Collection(PERFUMEModel.get_all_PN_Result)" />
+          <FunctionImport Name="get_all_product" ReturnType="Collection(PERFUMEModel.get_all_product_Result)" />
+          <FunctionImport Name="get_all_shipper" ReturnType="Collection(PERFUMEModel.get_all_shipper_Result)" />
+          <FunctionImport Name="get_all_user" ReturnType="Collection(PERFUMEModel.get_all_user_Result)" />
+          <FunctionImport Name="get_CTDDH_by_MADDH_MASP" ReturnType="Collection(PERFUMEModel.get_CTDDH_by_MADDH_MASP_Result)">
+            <Parameter Name="maddh" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="get_discount_line_perfume" ReturnType="Collection(PERFUMEModel.get_discount_line_perfume_Result)" />
+          <FunctionImport Name="get_DSP_KM_SP" ReturnType="Collection(PERFUMEModel.get_DSP_KM_SP_Result)" />
+          <FunctionImport Name="get_employee" ReturnType="Collection(PERFUMEModel.get_employee_Result)" />
+          <FunctionImport Name="get_line_product_for_display" ReturnType="Collection(PERFUMEModel.get_line_product_for_display_Result)" />
+          <FunctionImport Name="get_name_product_belong_hang" ReturnType="Collection(String)">
+            <Parameter Name="MAHANG" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="get_order_by_status" ReturnType="Collection(PERFUMEModel.get_order_by_status_Result)">
+            <Parameter Name="TRANGTHAI" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="get_order_follow_user_by_status" ReturnType="Collection(PERFUMEModel.get_order_follow_user_by_status_Result)">
+            <Parameter Name="MAKH" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="get_order_supply" ReturnType="Collection(PERFUMEModel.get_order_supply_Result)" />
+          <FunctionImport Name="get_order_supply_by_status" ReturnType="Collection(PERFUMEModel.get_order_supply_by_status_Result)">
+            <Parameter Name="status" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="get_all_employee_Result">
-          <Property Type="Int32" Name="ID_NV" Nullable="false" />
+        <ComplexType Name="discount_line_perfume_Result">
+          <Property Type="String" Name="TEN" Nullable="true" MaxLength="100" />
+          <Property Type="Double" Name="PHANTRAMKM" Nullable="false" />
+          <Property Type="String" Name="MA_DSP" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="MA_SP" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="DUNGTICH" Nullable="true" />
+          <Property Type="Int32" Name="GIA" Nullable="true" />
+          <Property Type="Int32" Name="SOLUONGTON" Nullable="true" />
+          <Property Type="String" Name="MA_DSP1" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="get_all_discount_line_perfume_Result">
+          <Property Type="String" Name="MA_DSP" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TEN" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MA_SP" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="DUNGTICH" Nullable="true" />
+          <Property Type="Int32" Name="GIA" Nullable="true" />
+          <Property Type="Int32" Name="SOLUONGTON" Nullable="true" />
+          <Property Type="Double" Name="PHANTRAMKM" Nullable="false" />
+          <Property Type="String" Name="HINHANH" Nullable="true" MaxLength="400" />
+        </ComplexType>
+        <ComplexType Name="get_all_hang_Result">
+          <Property Type="String" Name="MA_HANG" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TENHANG" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SODIENTHOAI" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="DIACHI" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="get_all_invoice_Result">
+          <Property Type="String" Name="MA_HOADON" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="NGAYTAOHD" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="TONGTIEN" Nullable="false" />
+          <Property Type="Int32" Name="MASOTHUE" Nullable="false" />
+          <Property Type="Int32" Name="ID_PHIEUDAT" Nullable="true" />
+          <Property Type="String" Name="MA_NV" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="MA_NVGH" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="get_all_line_perfume_km_Result">
+          <Property Type="String" Name="MA_DSP" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TEN" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="GIOITINH" Nullable="false" />
+          <Property Type="String" Name="XUATXU" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="MOTA" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="HINHANH" Nullable="false" MaxLength="400" />
+          <Property Type="String" Name="DOLUUHUONG" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MA_HANG" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TENHANG" Nullable="false" MaxLength="50" />
+          <Property Type="Double" Name="PHANTRAMKM" Nullable="true" />
+          <Property Type="DateTime" Name="NGAYBD" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="NGAYKT" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="get_all_linePerfume_by_DSP_Result">
+          <Property Type="String" Name="MA_SP" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="DUNGTICH" Nullable="false" />
+          <Property Type="Int32" Name="GIA" Nullable="false" />
+          <Property Type="Int32" Name="SOLUONGTON" Nullable="false" />
+          <Property Type="String" Name="MA_DSP" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="get_all_perfume_Result">
+          <Property Type="String" Name="MA_DSP" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TEN" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="GIOITINH" Nullable="false" />
+          <Property Type="String" Name="XUATXU" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="MOTA" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="HINHANH" Nullable="false" MaxLength="400" />
+          <Property Type="String" Name="DOLUUHUONG" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MA_HANG" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TENHANG" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="get_all_perfume_by_hang_Result">
+          <Property Type="String" Name="MA_DSP" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TEN" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="GIOITINH" Nullable="false" />
+          <Property Type="String" Name="XUATXU" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="MOTA" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="HINHANH" Nullable="false" MaxLength="400" />
+          <Property Type="String" Name="DOLUUHUONG" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MA_HANG" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="get_all_phieudat_Result">
+          <Property Type="Int32" Name="ID_PHIEUDAT" Nullable="false" />
+          <Property Type="String" Name="HOTEN" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SODIENTHOAI" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="DIACHI" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="NGAYDAT" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="NGAYGIAO" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="TRANGTHAI" Nullable="false" />
+          <Property Type="String" Name="MA_KH" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="MA_NV" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TRANSACTIONID" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="get_all_PN_Result">
+          <Property Type="String" Name="MA_PHIEUNHAP" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="NGAYTAO" Nullable="false" Precision="23" />
+          <Property Type="String" Name="MA_NV" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="MA_DDH" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="get_all_product_Result">
+          <Property Type="String" Name="MA_SP" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="DUNGTICH" Nullable="false" />
+          <Property Type="Int32" Name="GIA" Nullable="false" />
+          <Property Type="Int32" Name="SOLUONGTON" Nullable="false" />
+          <Property Type="String" Name="MA_DSP" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TEN" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="get_all_shipper_Result">
+          <Property Type="String" Name="MA_NVGH" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="HOTEN" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SODIENTHOAI" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="NGAYSINH" Nullable="false" />
+          <Property Type="String" Name="MA_CTVC" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="get_all_user_Result">
+          <Property Type="String" Name="MA_KH" Nullable="false" MaxLength="12" />
           <Property Type="String" Name="HOTEN" Nullable="false" MaxLength="50" />
           <Property Type="DateTime" Name="NGAYSINH" Nullable="false" />
           <Property Type="String" Name="DIACHI" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="SODIENTHOAI" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="EMIAL" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="PASS" Nullable="false" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="get_all_line_perfume_Result">
-          <Property Type="String" Name="ID_DSP" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="TEN" Nullable="false" MaxLength="100" />
-          <Property Type="Boolean" Name="GIOITINH" Nullable="false" />
-          <Property Type="String" Name="XUATXU" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="MOTA" Nullable="true" MaxLength="Max" />
-          <Property Type="String" Name="HINHANH" Nullable="false" MaxLength="Max" />
-          <Property Type="String" Name="DOLUUHUONG" Nullable="false" MaxLength="100" />
-          <Property Type="Int32" Name="ID_HANG" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="get_all_perfume_by_hang_Result">
-          <Property Type="String" Name="ID_DSP" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="TEN" Nullable="false" MaxLength="100" />
-          <Property Type="Boolean" Name="GIOITINH" Nullable="false" />
-          <Property Type="String" Name="XUATXU" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="MOTA" Nullable="true" MaxLength="Max" />
-          <Property Type="String" Name="HINHANH" Nullable="false" MaxLength="Max" />
-          <Property Type="String" Name="DOLUUHUONG" Nullable="false" MaxLength="100" />
-          <Property Type="Int32" Name="ID_HANG" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="get_all_perfume_by_DSP_Result">
-          <Property Type="Int32" Name="ID_SP" Nullable="false" />
-          <Property Type="Int32" Name="DUNGTICH" Nullable="false" />
+        <ComplexType Name="get_CTDDH_by_MADDH_MASP_Result">
+          <Property Type="String" Name="MA_DDH" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="MA_SP" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="SOLUONG" Nullable="false" />
           <Property Type="Int32" Name="GIA" Nullable="false" />
-          <Property Type="Int32" Name="SOLUONGTON" Nullable="false" />
-          <Property Type="String" Name="ID_DSP" Nullable="true" MaxLength="6" />
-          <Property Type="DateTime" Name="NGAYDOIGIA" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="get_discount_line_perfume_Result">
+          <Property Type="String" Name="MA_DSP" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TEN" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MA_SP" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="DUNGTICH" Nullable="true" />
+          <Property Type="Int32" Name="GIA" Nullable="true" />
+          <Property Type="Int32" Name="SOLUONGTON" Nullable="true" />
+          <Property Type="Double" Name="PHANTRAMKM" Nullable="false" />
+          <Property Type="String" Name="HINHANH" Nullable="true" MaxLength="400" />
+        </ComplexType>
+        <ComplexType Name="get_DSP_KM_SP_Result">
+          <Property Type="String" Name="MA_DSP" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TEN" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="GIOITINH" Nullable="false" />
+          <Property Type="String" Name="XUATXU" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="MOTA" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="HINHANH" Nullable="false" MaxLength="400" />
+          <Property Type="String" Name="DOLUUHUONG" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="GIA" Nullable="true" />
+          <Property Type="Int32" Name="DUNGTICH" Nullable="true" />
+          <Property Type="Int32" Name="SOLUONGTON" Nullable="true" />
+          <Property Type="String" Name="MA_HANG" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TENHANG" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="PHANTRAMKM" Nullable="true" />
+          <Property Type="DateTime" Name="NGAYBD" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="NGAYKT" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="get_employee_Result">
+          <Property Type="String" Name="MA_NV" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="HOTEN" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="NGAYSINH" Nullable="false" />
+          <Property Type="String" Name="DIACHI" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SODIENTHOAI" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PASS" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="get_line_product_for_display_Result">
+          <Property Type="String" Name="MA_DSP" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TEN" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="GIOITINH" Nullable="false" />
+          <Property Type="String" Name="XUATXU" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="MOTA" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="HINHANH" Nullable="false" MaxLength="400" />
+          <Property Type="String" Name="DOLUUHUONG" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MA_HANG" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TENHANG" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="PHANTRAMKM" Nullable="true" />
+          <Property Type="DateTime" Name="NGAYBD" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="NGAYKT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MA_SP" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="GIA" Nullable="true" />
+          <Property Type="Int32" Name="SOLUONGTON" Nullable="true" />
+          <Property Type="Int32" Name="DUNGTICH" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="get_order_by_status_Result">
+          <Property Type="Int32" Name="ID_PHIEUDAT" Nullable="false" />
+          <Property Type="String" Name="HOTEN" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SODIENTHOAI" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="DIACHI" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="NGAYDAT" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="NGAYGIAO" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="TRANGTHAI" Nullable="false" />
+          <Property Type="String" Name="MA_KH" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="MA_NV" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TRANSACTIONID" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="get_order_follow_user_by_status_Result">
+          <Property Type="Int32" Name="ID_PHIEUDAT" Nullable="false" />
+          <Property Type="String" Name="HOTEN" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SODIENTHOAI" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="DIACHI" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="NGAYDAT" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="NGAYGIAO" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="TRANGTHAI" Nullable="false" />
+          <Property Type="String" Name="MA_KH" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="MA_NV" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TRANSACTIONID" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="get_order_supply_Result">
+          <Property Type="String" Name="MA_DDH" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="NGAYDAT" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="TRANGTHAI" Nullable="false" />
+          <Property Type="DateTime" Name="NGAYNHANHANG" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MA_HANG" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="MA_NV" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="get_order_supply_by_status_Result">
+          <Property Type="String" Name="MA_DDH" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="NGAYDAT" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="TRANGTHAI" Nullable="false" />
+          <Property Type="DateTime" Name="NGAYNHANHANG" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MA_HANG" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="MA_NV" Nullable="true" MaxLength="10" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PERFUMEModelStoreContainer" CdmEntityContainer="PERFUMEEntities">
+        <EntityContainerMapping StorageEntityContainer="PERFUMEModelStoreContainer" CdmEntityContainer="PerfumeEntities">
           <EntitySetMapping Name="CT_DDH">
             <EntityTypeMapping TypeName="PERFUMEModel.CT_DDH">
               <MappingFragment StoreEntitySet="CT_DDH">
-                <ScalarProperty Name="ID_DDH" ColumnName="ID_DDH" />
-                <ScalarProperty Name="ID_SP" ColumnName="ID_SP" />
+                <ScalarProperty Name="MA_DDH" ColumnName="MA_DDH" />
+                <ScalarProperty Name="MA_SP" ColumnName="MA_SP" />
                 <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
                 <ScalarProperty Name="GIA" ColumnName="GIA" />
               </MappingFragment>
@@ -1391,8 +1680,8 @@
           <EntitySetMapping Name="CT_KM">
             <EntityTypeMapping TypeName="PERFUMEModel.CT_KM">
               <MappingFragment StoreEntitySet="CT_KM">
-                <ScalarProperty Name="ID_KM" ColumnName="ID_KM" />
-                <ScalarProperty Name="ID_DSP" ColumnName="ID_DSP" />
+                <ScalarProperty Name="MA_KM" ColumnName="MA_KM" />
+                <ScalarProperty Name="MA_DSP" ColumnName="MA_DSP" />
                 <ScalarProperty Name="PHANTRAMKM" ColumnName="PHANTRAMKM" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1400,8 +1689,9 @@
           <EntitySetMapping Name="CT_PHIEUDAT">
             <EntityTypeMapping TypeName="PERFUMEModel.CT_PHIEUDAT">
               <MappingFragment StoreEntitySet="CT_PHIEUDAT">
+                <ScalarProperty Name="ID_CTPD" ColumnName="ID_CTPD" />
                 <ScalarProperty Name="ID_PHIEUDAT" ColumnName="ID_PHIEUDAT" />
-                <ScalarProperty Name="ID_SP" ColumnName="ID_SP" />
+                <ScalarProperty Name="MA_SP" ColumnName="MA_SP" />
                 <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
                 <ScalarProperty Name="GIA" ColumnName="GIA" />
               </MappingFragment>
@@ -1410,8 +1700,8 @@
           <EntitySetMapping Name="CT_PHIEUNHAP">
             <EntityTypeMapping TypeName="PERFUMEModel.CT_PHIEUNHAP">
               <MappingFragment StoreEntitySet="CT_PHIEUNHAP">
-                <ScalarProperty Name="ID_PHIEUNHAP" ColumnName="ID_PHIEUNHAP" />
-                <ScalarProperty Name="ID_SP" ColumnName="ID_SP" />
+                <ScalarProperty Name="MA_PHIEUNHAP" ColumnName="MA_PHIEUNHAP" />
+                <ScalarProperty Name="MA_SP" ColumnName="MA_SP" />
                 <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
                 <ScalarProperty Name="GIA" ColumnName="GIA" />
               </MappingFragment>
@@ -1420,9 +1710,8 @@
           <EntitySetMapping Name="CT_PHIEUTRA">
             <EntityTypeMapping TypeName="PERFUMEModel.CT_PHIEUTRA">
               <MappingFragment StoreEntitySet="CT_PHIEUTRA">
-                <ScalarProperty Name="ID_PHIEUTRA" ColumnName="ID_PHIEUTRA" />
-                <ScalarProperty Name="ID_PHIEUDAT" ColumnName="ID_PHIEUDAT" />
-                <ScalarProperty Name="ID_SP" ColumnName="ID_SP" />
+                <ScalarProperty Name="MA_PHIEUTRA" ColumnName="MA_PHIEUTRA" />
+                <ScalarProperty Name="ID_CTPD" ColumnName="ID_CTPD" />
                 <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1430,7 +1719,7 @@
           <EntitySetMapping Name="CTVCs">
             <EntityTypeMapping TypeName="PERFUMEModel.CTVC">
               <MappingFragment StoreEntitySet="CTVC">
-                <ScalarProperty Name="ID_CTVC" ColumnName="ID_CTVC" />
+                <ScalarProperty Name="MA_CTVC" ColumnName="MA_CTVC" />
                 <ScalarProperty Name="TEN" ColumnName="TEN" />
                 <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
                 <ScalarProperty Name="SODIENTHOAI" ColumnName="SODIENTHOAI" />
@@ -1441,34 +1730,33 @@
           <EntitySetMapping Name="DONDATHANGs">
             <EntityTypeMapping TypeName="PERFUMEModel.DONDATHANG">
               <MappingFragment StoreEntitySet="DONDATHANG">
-                <ScalarProperty Name="ID_DDH" ColumnName="ID_DDH" />
+                <ScalarProperty Name="MA_DDH" ColumnName="MA_DDH" />
                 <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
                 <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
                 <ScalarProperty Name="NGAYNHANHANG" ColumnName="NGAYNHANHANG" />
-                <ScalarProperty Name="ID_HANG" ColumnName="ID_HANG" />
-                <ScalarProperty Name="ID_PHIEUNHAP" ColumnName="ID_PHIEUNHAP" />
-                <ScalarProperty Name="ID_NV" ColumnName="ID_NV" />
+                <ScalarProperty Name="MA_HANG" ColumnName="MA_HANG" />
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DONGSANPHAMs">
             <EntityTypeMapping TypeName="PERFUMEModel.DONGSANPHAM">
               <MappingFragment StoreEntitySet="DONGSANPHAM">
-                <ScalarProperty Name="ID_DSP" ColumnName="ID_DSP" />
+                <ScalarProperty Name="MA_DSP" ColumnName="MA_DSP" />
                 <ScalarProperty Name="TEN" ColumnName="TEN" />
                 <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
                 <ScalarProperty Name="XUATXU" ColumnName="XUATXU" />
                 <ScalarProperty Name="MOTA" ColumnName="MOTA" />
                 <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
                 <ScalarProperty Name="DOLUUHUONG" ColumnName="DOLUUHUONG" />
-                <ScalarProperty Name="ID_HANG" ColumnName="ID_HANG" />
+                <ScalarProperty Name="MA_HANG" ColumnName="MA_HANG" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HANGs">
             <EntityTypeMapping TypeName="PERFUMEModel.HANG">
               <MappingFragment StoreEntitySet="HANG">
-                <ScalarProperty Name="ID_HANG" ColumnName="ID_HANG" />
+                <ScalarProperty Name="MA_HANG" ColumnName="MA_HANG" />
                 <ScalarProperty Name="TENHANG" ColumnName="TENHANG" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
                 <ScalarProperty Name="SODIENTHOAI" ColumnName="SODIENTHOAI" />
@@ -1479,20 +1767,20 @@
           <EntitySetMapping Name="HOADONs">
             <EntityTypeMapping TypeName="PERFUMEModel.HOADON">
               <MappingFragment StoreEntitySet="HOADON">
-                <ScalarProperty Name="ID_HOADON" ColumnName="ID_HOADON" />
+                <ScalarProperty Name="MA_HOADON" ColumnName="MA_HOADON" />
                 <ScalarProperty Name="NGAYTAOHD" ColumnName="NGAYTAOHD" />
                 <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
-                <ScalarProperty Name="SOTHUE" ColumnName="SOTHUE" />
+                <ScalarProperty Name="MASOTHUE" ColumnName="MASOTHUE" />
                 <ScalarProperty Name="ID_PHIEUDAT" ColumnName="ID_PHIEUDAT" />
-                <ScalarProperty Name="ID_NV" ColumnName="ID_NV" />
-                <ScalarProperty Name="ID_NVGH" ColumnName="ID_NVGH" />
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
+                <ScalarProperty Name="MA_NVGH" ColumnName="MA_NVGH" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KHACHHANGs">
             <EntityTypeMapping TypeName="PERFUMEModel.KHACHHANG">
               <MappingFragment StoreEntitySet="KHACHHANG">
-                <ScalarProperty Name="ID_KH" ColumnName="ID_KH" />
+                <ScalarProperty Name="MA_KH" ColumnName="MA_KH" />
                 <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
                 <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
                 <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
@@ -1505,24 +1793,24 @@
           <EntitySetMapping Name="KHUYENMAIs">
             <EntityTypeMapping TypeName="PERFUMEModel.KHUYENMAI">
               <MappingFragment StoreEntitySet="KHUYENMAI">
-                <ScalarProperty Name="ID_KM" ColumnName="ID_KM" />
+                <ScalarProperty Name="MA_KM" ColumnName="MA_KM" />
                 <ScalarProperty Name="TEN" ColumnName="TEN" />
                 <ScalarProperty Name="NGAYBD" ColumnName="NGAYBD" />
                 <ScalarProperty Name="NGAYKT" ColumnName="NGAYKT" />
                 <ScalarProperty Name="MOTA" ColumnName="MOTA" />
-                <ScalarProperty Name="ID_NV" ColumnName="ID_NV" />
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NHANVIENs">
             <EntityTypeMapping TypeName="PERFUMEModel.NHANVIEN">
               <MappingFragment StoreEntitySet="NHANVIEN">
-                <ScalarProperty Name="ID_NV" ColumnName="ID_NV" />
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
                 <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
                 <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
                 <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
                 <ScalarProperty Name="SODIENTHOAI" ColumnName="SODIENTHOAI" />
-                <ScalarProperty Name="EMIAL" ColumnName="EMIAL" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
                 <ScalarProperty Name="PASS" ColumnName="PASS" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1530,12 +1818,12 @@
           <EntitySetMapping Name="NHANVIEN_GH">
             <EntityTypeMapping TypeName="PERFUMEModel.NHANVIEN_GH">
               <MappingFragment StoreEntitySet="NHANVIEN_GH">
-                <ScalarProperty Name="ID_NVGH" ColumnName="ID_NVGH" />
+                <ScalarProperty Name="MA_NVGH" ColumnName="MA_NVGH" />
                 <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
                 <ScalarProperty Name="SODIENTHOAI" ColumnName="SODIENTHOAI" />
                 <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
-                <ScalarProperty Name="ID_CTVC" ColumnName="ID_CTVC" />
+                <ScalarProperty Name="MA_CTVC" ColumnName="MA_CTVC" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1549,41 +1837,41 @@
                 <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
                 <ScalarProperty Name="NGAYGIAO" ColumnName="NGAYGIAO" />
                 <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
-                <ScalarProperty Name="ID_KH" ColumnName="ID_KH" />
-                <ScalarProperty Name="ID_NV" ColumnName="ID_NV" />
+                <ScalarProperty Name="MA_KH" ColumnName="MA_KH" />
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
+                <ScalarProperty Name="TRANSACTIONID" ColumnName="TRANSACTIONID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PHIEUNHAPs">
             <EntityTypeMapping TypeName="PERFUMEModel.PHIEUNHAP">
               <MappingFragment StoreEntitySet="PHIEUNHAP">
-                <ScalarProperty Name="ID_PHIEUNHAP" ColumnName="ID_PHIEUNHAP" />
+                <ScalarProperty Name="MA_PHIEUNHAP" ColumnName="MA_PHIEUNHAP" />
                 <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
-                <ScalarProperty Name="ID_NV" ColumnName="ID_NV" />
-                <ScalarProperty Name="ID_DDH" ColumnName="ID_DDH" />
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
+                <ScalarProperty Name="MA_DDH" ColumnName="MA_DDH" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PHIEUTRAs">
             <EntityTypeMapping TypeName="PERFUMEModel.PHIEUTRA">
               <MappingFragment StoreEntitySet="PHIEUTRA">
-                <ScalarProperty Name="ID_PHIEUTRA" ColumnName="ID_PHIEUTRA" />
+                <ScalarProperty Name="MA_PHIEUTRA" ColumnName="MA_PHIEUTRA" />
                 <ScalarProperty Name="NGAYTRA" ColumnName="NGAYTRA" />
                 <ScalarProperty Name="LYDO" ColumnName="LYDO" />
-                <ScalarProperty Name="ID_HOADON" ColumnName="ID_HOADON" />
-                <ScalarProperty Name="ID_NV" ColumnName="ID_NV" />
+                <ScalarProperty Name="MA_HOADON" ColumnName="MA_HOADON" />
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SANPHAMs">
-            <EntityTypeMapping TypeName="PERFUMEModel.SANPHAM">
-              <MappingFragment StoreEntitySet="SANPHAM">
-                <ScalarProperty Name="ID_SP" ColumnName="ID_SP" />
+          <EntitySetMapping Name="SanPhams">
+            <EntityTypeMapping TypeName="PERFUMEModel.SanPham">
+              <MappingFragment StoreEntitySet="SanPham">
+                <ScalarProperty Name="MA_SP" ColumnName="MA_SP" />
                 <ScalarProperty Name="DUNGTICH" ColumnName="DUNGTICH" />
                 <ScalarProperty Name="GIA" ColumnName="GIA" />
                 <ScalarProperty Name="SOLUONGTON" ColumnName="SOLUONGTON" />
-                <ScalarProperty Name="ID_DSP" ColumnName="ID_DSP" />
-                <ScalarProperty Name="NGAYDOIGIA" ColumnName="NGAYDOIGIA" />
+                <ScalarProperty Name="MA_DSP" ColumnName="MA_DSP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1598,56 +1886,322 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="get_all_employee" FunctionName="PERFUMEModel.Store.get_all_employee">
+          <EntitySetMapping Name="THAYDOIGIAs">
+            <EntityTypeMapping TypeName="PERFUMEModel.THAYDOIGIA">
+              <MappingFragment StoreEntitySet="THAYDOIGIA">
+                <ScalarProperty Name="MA_SP" ColumnName="MA_SP" />
+                <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+                <ScalarProperty Name="GIA" ColumnName="GIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="discount_line_perfume" FunctionName="PERFUMEModel.Store.discount_line_perfume">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PERFUMEModel.get_all_employee_Result">
-                <ScalarProperty Name="ID_NV" ColumnName="ID_NV" />
-                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
-                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
-                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
-                <ScalarProperty Name="SODIENTHOAI" ColumnName="SODIENTHOAI" />
-                <ScalarProperty Name="EMIAL" ColumnName="EMIAL" />
-                <ScalarProperty Name="PASS" ColumnName="PASS" />
+              <ComplexTypeMapping TypeName="PERFUMEModel.discount_line_perfume_Result">
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="PHANTRAMKM" ColumnName="PHANTRAMKM" />
+                <ScalarProperty Name="MA_DSP" ColumnName="MA_DSP" />
+                <ScalarProperty Name="MA_SP" ColumnName="MA_SP" />
+                <ScalarProperty Name="DUNGTICH" ColumnName="DUNGTICH" />
+                <ScalarProperty Name="GIA" ColumnName="GIA" />
+                <ScalarProperty Name="SOLUONGTON" ColumnName="SOLUONGTON" />
+                <ScalarProperty Name="MA_DSP1" ColumnName="MA_DSP1" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="get_all_line_perfume" FunctionName="PERFUMEModel.Store.get_all_line_perfume">
+          <FunctionImportMapping FunctionImportName="get_all_discount_line_perfume" FunctionName="PERFUMEModel.Store.get_all_discount_line_perfume">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PERFUMEModel.get_all_line_perfume_Result">
-                <ScalarProperty Name="ID_DSP" ColumnName="ID_DSP" />
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_all_discount_line_perfume_Result">
+                <ScalarProperty Name="MA_DSP" ColumnName="MA_DSP" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="MA_SP" ColumnName="MA_SP" />
+                <ScalarProperty Name="DUNGTICH" ColumnName="DUNGTICH" />
+                <ScalarProperty Name="GIA" ColumnName="GIA" />
+                <ScalarProperty Name="SOLUONGTON" ColumnName="SOLUONGTON" />
+                <ScalarProperty Name="PHANTRAMKM" ColumnName="PHANTRAMKM" />
+                <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_all_hang" FunctionName="PERFUMEModel.Store.get_all_hang">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_all_hang_Result">
+                <ScalarProperty Name="MA_HANG" ColumnName="MA_HANG" />
+                <ScalarProperty Name="TENHANG" ColumnName="TENHANG" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="SODIENTHOAI" ColumnName="SODIENTHOAI" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_all_invoice" FunctionName="PERFUMEModel.Store.get_all_invoice">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_all_invoice_Result">
+                <ScalarProperty Name="MA_HOADON" ColumnName="MA_HOADON" />
+                <ScalarProperty Name="NGAYTAOHD" ColumnName="NGAYTAOHD" />
+                <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
+                <ScalarProperty Name="MASOTHUE" ColumnName="MASOTHUE" />
+                <ScalarProperty Name="ID_PHIEUDAT" ColumnName="ID_PHIEUDAT" />
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
+                <ScalarProperty Name="MA_NVGH" ColumnName="MA_NVGH" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_all_line_perfume_km" FunctionName="PERFUMEModel.Store.get_all_line_perfume_km">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_all_line_perfume_km_Result">
+                <ScalarProperty Name="MA_DSP" ColumnName="MA_DSP" />
                 <ScalarProperty Name="TEN" ColumnName="TEN" />
                 <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
                 <ScalarProperty Name="XUATXU" ColumnName="XUATXU" />
                 <ScalarProperty Name="MOTA" ColumnName="MOTA" />
                 <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
                 <ScalarProperty Name="DOLUUHUONG" ColumnName="DOLUUHUONG" />
-                <ScalarProperty Name="ID_HANG" ColumnName="ID_HANG" />
+                <ScalarProperty Name="MA_HANG" ColumnName="MA_HANG" />
+                <ScalarProperty Name="TENHANG" ColumnName="TENHANG" />
+                <ScalarProperty Name="PHANTRAMKM" ColumnName="PHANTRAMKM" />
+                <ScalarProperty Name="NGAYBD" ColumnName="NGAYBD" />
+                <ScalarProperty Name="NGAYKT" ColumnName="NGAYKT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_all_linePerfume_by_DSP" FunctionName="PERFUMEModel.Store.get_all_linePerfume_by_DSP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_all_linePerfume_by_DSP_Result">
+                <ScalarProperty Name="MA_SP" ColumnName="MA_SP" />
+                <ScalarProperty Name="DUNGTICH" ColumnName="DUNGTICH" />
+                <ScalarProperty Name="GIA" ColumnName="GIA" />
+                <ScalarProperty Name="SOLUONGTON" ColumnName="SOLUONGTON" />
+                <ScalarProperty Name="MA_DSP" ColumnName="MA_DSP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_all_perfume" FunctionName="PERFUMEModel.Store.get_all_perfume">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_all_perfume_Result">
+                <ScalarProperty Name="MA_DSP" ColumnName="MA_DSP" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="XUATXU" ColumnName="XUATXU" />
+                <ScalarProperty Name="MOTA" ColumnName="MOTA" />
+                <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
+                <ScalarProperty Name="DOLUUHUONG" ColumnName="DOLUUHUONG" />
+                <ScalarProperty Name="MA_HANG" ColumnName="MA_HANG" />
+                <ScalarProperty Name="TENHANG" ColumnName="TENHANG" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="get_all_perfume_by_hang" FunctionName="PERFUMEModel.Store.get_all_perfume_by_hang">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PERFUMEModel.get_all_perfume_by_hang_Result">
-                <ScalarProperty Name="ID_DSP" ColumnName="ID_DSP" />
+                <ScalarProperty Name="MA_DSP" ColumnName="MA_DSP" />
                 <ScalarProperty Name="TEN" ColumnName="TEN" />
                 <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
                 <ScalarProperty Name="XUATXU" ColumnName="XUATXU" />
                 <ScalarProperty Name="MOTA" ColumnName="MOTA" />
                 <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
                 <ScalarProperty Name="DOLUUHUONG" ColumnName="DOLUUHUONG" />
-                <ScalarProperty Name="ID_HANG" ColumnName="ID_HANG" />
+                <ScalarProperty Name="MA_HANG" ColumnName="MA_HANG" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="get_all_perfume_by_DSP" FunctionName="PERFUMEModel.Store.get_all_perfume_by_DSP">
+          <FunctionImportMapping FunctionImportName="get_all_phieudat" FunctionName="PERFUMEModel.Store.get_all_phieudat">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PERFUMEModel.get_all_perfume_by_DSP_Result">
-                <ScalarProperty Name="ID_SP" ColumnName="ID_SP" />
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_all_phieudat_Result">
+                <ScalarProperty Name="ID_PHIEUDAT" ColumnName="ID_PHIEUDAT" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="SODIENTHOAI" ColumnName="SODIENTHOAI" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
+                <ScalarProperty Name="NGAYGIAO" ColumnName="NGAYGIAO" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="MA_KH" ColumnName="MA_KH" />
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
+                <ScalarProperty Name="TRANSACTIONID" ColumnName="TRANSACTIONID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_all_PN" FunctionName="PERFUMEModel.Store.get_all_PN">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_all_PN_Result">
+                <ScalarProperty Name="MA_PHIEUNHAP" ColumnName="MA_PHIEUNHAP" />
+                <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
+                <ScalarProperty Name="MA_DDH" ColumnName="MA_DDH" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_all_product" FunctionName="PERFUMEModel.Store.get_all_product">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_all_product_Result">
+                <ScalarProperty Name="MA_SP" ColumnName="MA_SP" />
                 <ScalarProperty Name="DUNGTICH" ColumnName="DUNGTICH" />
                 <ScalarProperty Name="GIA" ColumnName="GIA" />
                 <ScalarProperty Name="SOLUONGTON" ColumnName="SOLUONGTON" />
-                <ScalarProperty Name="ID_DSP" ColumnName="ID_DSP" />
-                <ScalarProperty Name="NGAYDOIGIA" ColumnName="NGAYDOIGIA" />
+                <ScalarProperty Name="MA_DSP" ColumnName="MA_DSP" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_all_shipper" FunctionName="PERFUMEModel.Store.get_all_shipper">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_all_shipper_Result">
+                <ScalarProperty Name="MA_NVGH" ColumnName="MA_NVGH" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="SODIENTHOAI" ColumnName="SODIENTHOAI" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="MA_CTVC" ColumnName="MA_CTVC" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_all_user" FunctionName="PERFUMEModel.Store.get_all_user">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_all_user_Result">
+                <ScalarProperty Name="MA_KH" ColumnName="MA_KH" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="SODIENTHOAI" ColumnName="SODIENTHOAI" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PASS" ColumnName="PASS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_CTDDH_by_MADDH_MASP" FunctionName="PERFUMEModel.Store.get_CTDDH_by_MADDH_MASP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_CTDDH_by_MADDH_MASP_Result">
+                <ScalarProperty Name="MA_DDH" ColumnName="MA_DDH" />
+                <ScalarProperty Name="MA_SP" ColumnName="MA_SP" />
+                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+                <ScalarProperty Name="GIA" ColumnName="GIA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_discount_line_perfume" FunctionName="PERFUMEModel.Store.get_discount_line_perfume">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_discount_line_perfume_Result">
+                <ScalarProperty Name="MA_DSP" ColumnName="MA_DSP" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="MA_SP" ColumnName="MA_SP" />
+                <ScalarProperty Name="DUNGTICH" ColumnName="DUNGTICH" />
+                <ScalarProperty Name="GIA" ColumnName="GIA" />
+                <ScalarProperty Name="SOLUONGTON" ColumnName="SOLUONGTON" />
+                <ScalarProperty Name="PHANTRAMKM" ColumnName="PHANTRAMKM" />
+                <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_DSP_KM_SP" FunctionName="PERFUMEModel.Store.get_DSP_KM_SP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_DSP_KM_SP_Result">
+                <ScalarProperty Name="MA_DSP" ColumnName="MA_DSP" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="XUATXU" ColumnName="XUATXU" />
+                <ScalarProperty Name="MOTA" ColumnName="MOTA" />
+                <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
+                <ScalarProperty Name="DOLUUHUONG" ColumnName="DOLUUHUONG" />
+                <ScalarProperty Name="GIA" ColumnName="GIA" />
+                <ScalarProperty Name="DUNGTICH" ColumnName="DUNGTICH" />
+                <ScalarProperty Name="SOLUONGTON" ColumnName="SOLUONGTON" />
+                <ScalarProperty Name="MA_HANG" ColumnName="MA_HANG" />
+                <ScalarProperty Name="TENHANG" ColumnName="TENHANG" />
+                <ScalarProperty Name="PHANTRAMKM" ColumnName="PHANTRAMKM" />
+                <ScalarProperty Name="NGAYBD" ColumnName="NGAYBD" />
+                <ScalarProperty Name="NGAYKT" ColumnName="NGAYKT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_employee" FunctionName="PERFUMEModel.Store.get_employee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_employee_Result">
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="SODIENTHOAI" ColumnName="SODIENTHOAI" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PASS" ColumnName="PASS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_line_product_for_display" FunctionName="PERFUMEModel.Store.get_line_product_for_display">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_line_product_for_display_Result">
+                <ScalarProperty Name="MA_DSP" ColumnName="MA_DSP" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="XUATXU" ColumnName="XUATXU" />
+                <ScalarProperty Name="MOTA" ColumnName="MOTA" />
+                <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
+                <ScalarProperty Name="DOLUUHUONG" ColumnName="DOLUUHUONG" />
+                <ScalarProperty Name="MA_HANG" ColumnName="MA_HANG" />
+                <ScalarProperty Name="TENHANG" ColumnName="TENHANG" />
+                <ScalarProperty Name="PHANTRAMKM" ColumnName="PHANTRAMKM" />
+                <ScalarProperty Name="NGAYBD" ColumnName="NGAYBD" />
+                <ScalarProperty Name="NGAYKT" ColumnName="NGAYKT" />
+                <ScalarProperty Name="MA_SP" ColumnName="MA_SP" />
+                <ScalarProperty Name="GIA" ColumnName="GIA" />
+                <ScalarProperty Name="SOLUONGTON" ColumnName="SOLUONGTON" />
+                <ScalarProperty Name="DUNGTICH" ColumnName="DUNGTICH" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_name_product_belong_hang" FunctionName="PERFUMEModel.Store.get_name_product_belong_hang" />
+          <FunctionImportMapping FunctionImportName="get_order_by_status" FunctionName="PERFUMEModel.Store.get_order_by_status">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_order_by_status_Result">
+                <ScalarProperty Name="ID_PHIEUDAT" ColumnName="ID_PHIEUDAT" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="SODIENTHOAI" ColumnName="SODIENTHOAI" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
+                <ScalarProperty Name="NGAYGIAO" ColumnName="NGAYGIAO" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="MA_KH" ColumnName="MA_KH" />
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
+                <ScalarProperty Name="TRANSACTIONID" ColumnName="TRANSACTIONID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_order_follow_user_by_status" FunctionName="PERFUMEModel.Store.get_order_follow_user_by_status">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_order_follow_user_by_status_Result">
+                <ScalarProperty Name="ID_PHIEUDAT" ColumnName="ID_PHIEUDAT" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="SODIENTHOAI" ColumnName="SODIENTHOAI" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
+                <ScalarProperty Name="NGAYGIAO" ColumnName="NGAYGIAO" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="MA_KH" ColumnName="MA_KH" />
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
+                <ScalarProperty Name="TRANSACTIONID" ColumnName="TRANSACTIONID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_order_supply" FunctionName="PERFUMEModel.Store.get_order_supply">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_order_supply_Result">
+                <ScalarProperty Name="MA_DDH" ColumnName="MA_DDH" />
+                <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="NGAYNHANHANG" ColumnName="NGAYNHANHANG" />
+                <ScalarProperty Name="MA_HANG" ColumnName="MA_HANG" />
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_order_supply_by_status" FunctionName="PERFUMEModel.Store.get_order_supply_by_status">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PERFUMEModel.get_order_supply_by_status_Result">
+                <ScalarProperty Name="MA_DDH" ColumnName="MA_DDH" />
+                <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="NGAYNHANHANG" ColumnName="NGAYNHANHANG" />
+                <ScalarProperty Name="MA_HANG" ColumnName="MA_HANG" />
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

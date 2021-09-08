@@ -13,13 +13,13 @@ namespace PerfumeEntity
     
     public partial class get_all_perfume_by_hang_Result
     {
-        public string ID_DSP { get; set; }
+        public string MA_DSP { get; set; }
         public string TEN { get; set; }
         public bool GIOITINH { get; set; }
         public string XUATXU { get; set; }
         public string MOTA { get; set; }
         public string HINHANH { get; set; }
         public string DOLUUHUONG { get; set; }
-        public Nullable<int> ID_HANG { get; set; }
+        public string MA_HANG { get; set; }
     }
 }

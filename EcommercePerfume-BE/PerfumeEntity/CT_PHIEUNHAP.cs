@@ -14,12 +14,12 @@ namespace PerfumeEntity
     
     public partial class CT_PHIEUNHAP
     {
-        public int ID_PHIEUNHAP { get; set; }
-        public int ID_SP { get; set; }
-        public Nullable<int> SOLUONG { get; set; }
-        public Nullable<int> GIA { get; set; }
+        public string MA_PHIEUNHAP { get; set; }
+        public string MA_SP { get; set; }
+        public int SOLUONG { get; set; }
+        public int GIA { get; set; }
     
         public virtual PHIEUNHAP PHIEUNHAP { get; set; }
-        public virtual SANPHAM SANPHAM { get; set; }
+        public virtual SanPham SanPham { get; set; }
     }
 }

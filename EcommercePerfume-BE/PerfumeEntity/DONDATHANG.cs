@@ -21,19 +21,17 @@ namespace PerfumeEntity
             this.PHIEUNHAPs = new HashSet<PHIEUNHAP>();
         }
     
-        public int ID_DDH { get; set; }
+        public string MA_DDH { get; set; }
         public System.DateTime NGAYDAT { get; set; }
         public int TRANGTHAI { get; set; }
         public Nullable<System.DateTime> NGAYNHANHANG { get; set; }
-        public Nullable<int> ID_HANG { get; set; }
-        public Nullable<int> ID_PHIEUNHAP { get; set; }
-        public Nullable<int> ID_NV { get; set; }
+        public string MA_HANG { get; set; }
+        public string MA_NV { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_DDH> CT_DDH { get; set; }
         public virtual HANG HANG { get; set; }
         public virtual NHANVIEN NHANVIEN { get; set; }
-        public virtual PHIEUNHAP PHIEUNHAP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PHIEUNHAP> PHIEUNHAPs { get; set; }
     }

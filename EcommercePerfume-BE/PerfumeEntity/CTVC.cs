@@ -20,7 +20,7 @@ namespace PerfumeEntity
             this.NHANVIEN_GH = new HashSet<NHANVIEN_GH>();
         }
     
-        public int ID_CTVC { get; set; }
+        public string MA_CTVC { get; set; }
         public string TEN { get; set; }
         public string DIACHI { get; set; }
         public string SODIENTHOAI { get; set; }

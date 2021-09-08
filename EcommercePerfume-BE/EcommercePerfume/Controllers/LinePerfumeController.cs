@@ -10,19 +10,64 @@ using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using System.IO;
 using System.Web.Http.Cors;
+using WebApi.Jwt.Filters;
 
 namespace EcommercePerfume.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LinePerfumeController : ApiController
     {
-        PERFUMEEntities perfumeEntities = new PERFUMEEntities();
+        PerfumeEntities perfumeEntities = new PerfumeEntities();
         static Account account = new Account("pnam1609", "374845767221635", "9ujinxMeC0YPZCLaEpwSB8QiO1E");
         Cloudinary cloudinary = new Cloudinary(account);
 
+
+        [AllowAnonymous]
         public IHttpActionResult Get()
         {
-            var line_perfumes = perfumeEntities.get_all_line_perfume().ToList();
+            //var line_perfumes = perfumeEntities.get_DSP_KM_SP().ToList();
+            var line_perfumes = perfumeEntities.DONGSANPHAMs.Select(perfume => new
+            {
+                perfume.MA_DSP,
+                perfume.TEN,
+                perfume.GIOITINH,
+                perfume.XUATXU,
+                perfume.MOTA,
+                perfume.HINHANH,
+                perfume.DOLUUHUONG,
+                HANG = new
+                {
+                    perfume.HANG.MA_HANG,
+                    perfume.HANG.TENHANG,
+                },
+                SANPHAM = perfume.SanPhams.Select(sp => new
+                {
+                    sp.MA_SP,
+                    sp.DUNGTICH,
+                    //GIA = sp.GIA,
+                    sp.SOLUONGTON,
+                    GIA = sp.THAYDOIGIAs.Where(ttg => DateTime.Compare(ttg.NGAY, DateTime.Now) < 0)
+                    .Select(ttg => new {
+                        ttg.GIA,
+                        ttg.NGAY
+                    }).OrderByDescending(ttg => ttg.NGAY).FirstOrDefault().GIA == null ? 0 : 
+                    sp.THAYDOIGIAs.Where(ttg => DateTime.Compare(ttg.NGAY, DateTime.Now) < 0)
+                    .Select(ttg => new {
+                        ttg.GIA,
+                        ttg.NGAY
+                    }).OrderByDescending(ttg => ttg.NGAY).FirstOrDefault().GIA
+                }),
+                CT_KM = perfume.CT_KM.Where(ctkm =>
+                DateTime.Compare(ctkm.KHUYENMAI.NGAYBD, DateTime.Now) < 0 && DateTime.Compare(ctkm.KHUYENMAI.NGAYKT, DateTime.Now) > 0)
+                .OrderBy(ct => ct.PHANTRAMKM)
+                .Select(ct => new {
+                    ct.MA_KM,
+                    ct.MA_DSP,
+                    ct.PHANTRAMKM
+                }).FirstOrDefault()
+            }).OrderBy(ct => ct.MA_DSP)
+            .ToList();
+
             if (line_perfumes.Count == 0)
             {
                 return Ok(new
@@ -34,7 +79,8 @@ namespace EcommercePerfume.Controllers
             return Ok(line_perfumes);
         }
 
-        public IHttpActionResult Get(int id)
+        [AllowAnonymous]
+        public IHttpActionResult Get(string id)
         {
             var perfume = perfumeEntities.DONGSANPHAMs.Find(id);
             if (perfume == null)
@@ -48,39 +94,50 @@ namespace EcommercePerfume.Controllers
 
             var res = new
             {
-                ID_DSP = perfume.ID_DSP,
-                TEN = perfume.TEN,
-                GIOITINH = perfume.GIOITINH,
-                XUATXU = perfume.XUATXU,
-                MOTA = perfume.MOTA,
-                HINHANH = perfume.HINHANH,
-                DOLUUHUONG = perfume.DOLUUHUONG,
+                perfume.MA_DSP,
+                perfume.TEN,
+                perfume.GIOITINH,
+                perfume.XUATXU,
+                perfume.MOTA,
+                perfume.HINHANH,
+                perfume.DOLUUHUONG,
                 HANG = new
                 {
-                    ID_HANG = perfume.HANG.ID_HANG,
-                    TENHANG = perfume.HANG.TENHANG,
-                }
+                    perfume.HANG.MA_HANG,
+                    perfume.HANG.TENHANG,
+                },
+                SanPhams = perfume.SanPhams.Select((sp,index) => new
+                {
+                    id = index,
+                    sp.MA_SP,
+                    sp.DUNGTICH,
+                    sp.SOLUONGTON,
+                    sp.GIA,
+                    THAYDOIGIAs = sp.THAYDOIGIAs.Where(ttg => DateTime.Compare(ttg.NGAY, DateTime.Now) < 0)
+                    .Select(ttg => new {
+                        ttg.MA_SP,
+                        ttg.GIA,
+                        ttg.NGAY,
+                    }).OrderByDescending(ttg => ttg.NGAY).FirstOrDefault()    
+                }),
+                CT_KM = perfume.CT_KM.Where(ctkm => 
+                DateTime.Compare(ctkm.KHUYENMAI.NGAYBD, DateTime.Now) < 0 && DateTime.Compare(ctkm.KHUYENMAI.NGAYKT, DateTime.Now) > 0)
+                .Select(ct=> new {
+                    ct.MA_KM,
+                    ct.MA_DSP,
+                    ct.PHANTRAMKM
+                })
             };
             return Ok(res);
         }
 
-        public IHttpActionResult GetPerfumeByCategory(int id_hang)
-        {
-            var perfumes = perfumeEntities.get_all_perfume_by_hang(id_hang).ToList();
-            if (perfumes.Count == 0)
-            {
-                return Ok(new
-                {
-                    result = -1,
-                    message = "Không có bài báo nào"
-                });
-            }
-            return Ok(perfumes);
-        }
+        
 
+        [JwtAuthentication]
         public IHttpActionResult Post([FromBody] DONGSANPHAM dsp)
         {
-            if(dsp == null)
+            
+            if (dsp == null || dsp.MA_DSP =="" || dsp.TEN =="" || dsp.HINHANH =="" || dsp.MA_HANG =="" || dsp.DOLUUHUONG =="" || dsp.XUATXU == "")
             {
                 return Ok(new
                 {
@@ -88,12 +145,18 @@ namespace EcommercePerfume.Controllers
                     message = "Dữ liệu trống"
                 });
             }
-            var hang = perfumeEntities.HANGs.Find(dsp.ID_HANG);
-
-            // thiếu validate
-
-
-            if(hang == null)
+            
+            var dongSanPham = perfumeEntities.DONGSANPHAMs.Find(dsp.MA_DSP);
+            if(dongSanPham != null)
+            {
+                return Ok(new
+                {
+                    result = -2,
+                    message = "Mã sản phẩm này đã tồn tại vui lòng chọn mã sản phẩm khác"
+                });
+            }
+            var hang = perfumeEntities.HANGs.Find(dsp.MA_HANG);
+            if (hang == null)
             {
                 return Ok(new
                 {
@@ -101,39 +164,78 @@ namespace EcommercePerfume.Controllers
                     message = "Hãng này không tồn tại"
                 });
             }
-            var uploadParams = new ImageUploadParams()
+
+            try
             {
-                File = new FileDescription(dsp.HINHANH)
-            };
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription(dsp.HINHANH)
+                };
 
-            var uploadResult = cloudinary.Upload(uploadParams);
-            dsp.HINHANH = uploadResult.Url.ToString();
+                var uploadResult = cloudinary.Upload(uploadParams);
+                dsp.HINHANH = uploadResult.Url.ToString();
 
-            perfumeEntities.DONGSANPHAMs.Add(dsp);
-            perfumeEntities.SaveChanges();
 
-            return Ok(new
+                foreach (var x in dsp.SanPhams.ToList())
+                {
+                    var sp = perfumeEntities.SanPhams.Find(x.MA_SP);
+                    if (sp != null)
+                    {
+                        return Ok(new
+                        {
+                            result = -2,
+                            message = "Mã sản phẩm " + x.MA_SP + " đã bị trùng"
+                        });
+                    }
+                    else
+                    {
+                        x.MA_DSP = dsp.MA_DSP;
+                        perfumeEntities.SanPhams.Add(x);
+                    }
+                }
+                dsp.SanPhams = null;
+                perfumeEntities.DONGSANPHAMs.Add(dsp);
+                perfumeEntities.SaveChanges();
+
+                return Ok(new
+                {
+                    result = 1,
+                    message = "Thêm dòng sản phẩm thành công"
+                });
+            }
+            catch (Exception e)
             {
-                result = 1,
-                message = "Thêm dòng sản phẩm thành công"
-            });
+                return Ok(new
+                {
+                    result = -3,
+                    message = e.Message
+                });
+            }
+            
         }
 
+        //[JwtAuthentication]
+        [JwtAuthentication]
         public IHttpActionResult Put([FromBody] DONGSANPHAM dsp)
         {
-            var dongSanPham = perfumeEntities.DONGSANPHAMs.Find(dsp.ID_DSP);
-            if (dongSanPham == null || dsp == null)
+            var dongSanPham = perfumeEntities.DONGSANPHAMs.Find(dsp.MA_DSP);
+            if (dongSanPham == null)
             {
                 return Ok(new
                 {
                     result = -1,
+                    message = "Không tìm thấy sản phẩm nào tương tự để sửa"
+                });
+            }
+            if (dsp == null || dsp.MA_DSP == "" || dsp.TEN == ""  || dsp.MA_HANG == "" || dsp.DOLUUHUONG == "" || dsp.XUATXU == "")
+            {
+                return Ok(new
+                {
+                    result = -2,
                     message = "Dữ liệu trống"
                 });
             }
-            var hang = perfumeEntities.HANGs.Find(dsp.ID_HANG);
-
-            // thiếu validate
-
+            var hang = perfumeEntities.HANGs.Find(dsp.MA_HANG);
 
             if (hang == null)
             {
@@ -144,7 +246,7 @@ namespace EcommercePerfume.Controllers
                 });
             }
 
-            if (dongSanPham.HINHANH != dsp.HINHANH)
+            if (dsp.HINHANH !=dongSanPham.HINHANH)
             {
                 var uploadParams = new ImageUploadParams()
                 {
@@ -155,14 +257,47 @@ namespace EcommercePerfume.Controllers
                 dongSanPham.HINHANH = uploadResult.Url.ToString();
             }
 
-            dongSanPham.ID_DSP = dsp.ID_DSP;
             dongSanPham.TEN = dsp.TEN;
             dongSanPham.GIOITINH = dsp.GIOITINH;
             dongSanPham.XUATXU = dsp.XUATXU;
             dongSanPham.MOTA = dsp.MOTA;
-            dongSanPham.HINHANH = dsp.HINHANH;
+            //dongSanPham.HINHANH = dsp.HINHANH;
             dongSanPham.DOLUUHUONG = dsp.DOLUUHUONG;
-            dongSanPham.ID_HANG = dsp.ID_HANG;
+            dongSanPham.MA_HANG = dsp.MA_HANG;
+
+
+            // sua lai san pham
+            //dongSanPham.SanPhams = dsp.SanPhams;
+            //dsp.SanPhams.ToList().ForEach(x =>
+            //{
+            //    var sp = perfumeEntities.SanPhams.Find(x.MA_SP);
+            //    if(x != null)
+            //    {
+            //        sp.SOLUONGTON = x.SOLUONGTON;
+            //        sp.GIA = x.GIA;
+            //        sp.DUNGTICH = x.DUNGTICH;
+            //    }
+            //    else
+            //    {
+            //        x.MA_DSP = dsp.MA_DSP;
+            //        perfumeEntities.SanPhams.Add(x);
+            //    }
+            //});
+            foreach (var x in dsp.SanPhams.ToList())
+            {
+                var sp = perfumeEntities.SanPhams.Find(x.MA_SP);
+                if (sp != null)
+                {
+                    sp.SOLUONGTON = x.SOLUONGTON;
+                    sp.GIA = x.GIA;
+                    sp.DUNGTICH = x.DUNGTICH;
+                }
+                else
+                {
+                    x.MA_DSP = dsp.MA_DSP;
+                    perfumeEntities.SanPhams.Add(x);
+                }
+            }
 
             perfumeEntities.SaveChanges();
             return Ok(new
@@ -172,7 +307,9 @@ namespace EcommercePerfume.Controllers
             });
         }
 
-        public IHttpActionResult Delete(int id)
+        //[JwtAuthentication]
+        [JwtAuthentication]
+        public IHttpActionResult Delete(string id)
         {
             var dongSanPham = perfumeEntities.DONGSANPHAMs.Find(id);
             if (dongSanPham == null)
@@ -183,8 +320,9 @@ namespace EcommercePerfume.Controllers
                     message = "Không tìm thấy dòng sản phẩm để xóa!"
                 });
             }
-            var listPerfumeInSP = perfumeEntities.get_all_perfume_by_DSP(id).ToList();
-            if(listPerfumeInSP.Count > 0)
+
+            var checkLinePerfumehaveProduct = perfumeEntities.get_all_linePerfume_by_DSP(id).ToList();
+            if(checkLinePerfumehaveProduct.Count > 0)
             {
                 return Ok(new
                 {
@@ -192,7 +330,7 @@ namespace EcommercePerfume.Controllers
                     message = "Dòng sản phẩm này hiện đang có sản phẩm không thể xóa"
                 });
             }
-            var listPerfumeInKM = perfumeEntities.CT_KM.Find(id);
+            var listPerfumeInKM = dongSanPham.CT_KM.Where(ct => ct.MA_DSP.Trim() == id).FirstOrDefault();
             if (listPerfumeInKM != null)
             {
                 return Ok(new

@@ -25,12 +25,12 @@ namespace PerfumeEntity
             this.PHIEUTRAs = new HashSet<PHIEUTRA>();
         }
     
-        public int ID_NV { get; set; }
+        public string MA_NV { get; set; }
         public string HOTEN { get; set; }
         public System.DateTime NGAYSINH { get; set; }
         public string DIACHI { get; set; }
         public string SODIENTHOAI { get; set; }
-        public string EMIAL { get; set; }
+        public string EMAIL { get; set; }
         public string PASS { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

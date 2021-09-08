@@ -18,19 +18,22 @@ namespace PerfumeEntity
         public DONGSANPHAM()
         {
             this.CT_KM = new HashSet<CT_KM>();
+            this.SanPhams = new HashSet<SanPham>();
         }
     
-        public string ID_DSP { get; set; }
+        public string MA_DSP { get; set; }
         public string TEN { get; set; }
         public bool GIOITINH { get; set; }
         public string XUATXU { get; set; }
         public string MOTA { get; set; }
         public string HINHANH { get; set; }
         public string DOLUUHUONG { get; set; }
-        public Nullable<int> ID_HANG { get; set; }
+        public string MA_HANG { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_KM> CT_KM { get; set; }
         public virtual HANG HANG { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SanPham> SanPhams { get; set; }
     }
 }

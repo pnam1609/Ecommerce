@@ -12,22 +12,22 @@ namespace PerfumeEntity
     using System;
     using System.Collections.Generic;
     
-    public partial class SANPHAM
+    public partial class SanPham
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SANPHAM()
+        public SanPham()
         {
             this.CT_DDH = new HashSet<CT_DDH>();
             this.CT_PHIEUDAT = new HashSet<CT_PHIEUDAT>();
             this.CT_PHIEUNHAP = new HashSet<CT_PHIEUNHAP>();
+            this.THAYDOIGIAs = new HashSet<THAYDOIGIA>();
         }
     
-        public int ID_SP { get; set; }
+        public string MA_SP { get; set; }
         public int DUNGTICH { get; set; }
         public int GIA { get; set; }
         public int SOLUONGTON { get; set; }
-        public string ID_DSP { get; set; }
-        public Nullable<System.DateTime> NGAYDOIGIA { get; set; }
+        public string MA_DSP { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_DDH> CT_DDH { get; set; }
@@ -35,5 +35,8 @@ namespace PerfumeEntity
         public virtual ICollection<CT_PHIEUDAT> CT_PHIEUDAT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_PHIEUNHAP> CT_PHIEUNHAP { get; set; }
+        public virtual DONGSANPHAM DONGSANPHAM { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<THAYDOIGIA> THAYDOIGIAs { get; set; }
     }
 }

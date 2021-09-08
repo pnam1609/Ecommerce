@@ -20,11 +20,11 @@ namespace PerfumeEntity
             this.CT_PHIEUTRA = new HashSet<CT_PHIEUTRA>();
         }
     
-        public int ID_PHIEUTRA { get; set; }
+        public string MA_PHIEUTRA { get; set; }
         public System.DateTime NGAYTRA { get; set; }
         public string LYDO { get; set; }
-        public Nullable<int> ID_HOADON { get; set; }
-        public Nullable<int> ID_NV { get; set; }
+        public string MA_HOADON { get; set; }
+        public string MA_NV { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_PHIEUTRA> CT_PHIEUTRA { get; set; }

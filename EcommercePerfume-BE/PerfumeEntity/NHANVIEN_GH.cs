@@ -20,12 +20,12 @@ namespace PerfumeEntity
             this.HOADONs = new HashSet<HOADON>();
         }
     
-        public int ID_NVGH { get; set; }
+        public string MA_NVGH { get; set; }
         public string HOTEN { get; set; }
         public string EMAIL { get; set; }
         public string SODIENTHOAI { get; set; }
         public System.DateTime NGAYSINH { get; set; }
-        public Nullable<int> ID_CTVC { get; set; }
+        public string MA_CTVC { get; set; }
     
         public virtual CTVC CTVC { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

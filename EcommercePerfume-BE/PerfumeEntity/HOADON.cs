@@ -20,13 +20,13 @@ namespace PerfumeEntity
             this.PHIEUTRAs = new HashSet<PHIEUTRA>();
         }
     
-        public int ID_HOADON { get; set; }
+        public string MA_HOADON { get; set; }
         public System.DateTime NGAYTAOHD { get; set; }
         public int TONGTIEN { get; set; }
-        public int SOTHUE { get; set; }
+        public int MASOTHUE { get; set; }
         public Nullable<int> ID_PHIEUDAT { get; set; }
-        public Nullable<int> ID_NV { get; set; }
-        public Nullable<int> ID_NVGH { get; set; }
+        public string MA_NV { get; set; }
+        public string MA_NVGH { get; set; }
     
         public virtual NHANVIEN NHANVIEN { get; set; }
         public virtual NHANVIEN_GH NHANVIEN_GH { get; set; }

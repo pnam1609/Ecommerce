@@ -20,12 +20,12 @@ namespace PerfumeEntity
             this.CT_KM = new HashSet<CT_KM>();
         }
     
-        public int ID_KM { get; set; }
+        public string MA_KM { get; set; }
         public string TEN { get; set; }
         public System.DateTime NGAYBD { get; set; }
         public System.DateTime NGAYKT { get; set; }
         public string MOTA { get; set; }
-        public Nullable<int> ID_NV { get; set; }
+        public string MA_NV { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_KM> CT_KM { get; set; }

@@ -21,7 +21,7 @@ namespace PerfumeEntity
             this.DONGSANPHAMs = new HashSet<DONGSANPHAM>();
         }
     
-        public int ID_HANG { get; set; }
+        public string MA_HANG { get; set; }
         public string TENHANG { get; set; }
         public string EMAIL { get; set; }
         public string SODIENTHOAI { get; set; }

@@ -18,18 +18,15 @@ namespace PerfumeEntity
         public PHIEUNHAP()
         {
             this.CT_PHIEUNHAP = new HashSet<CT_PHIEUNHAP>();
-            this.DONDATHANGs = new HashSet<DONDATHANG>();
         }
     
-        public int ID_PHIEUNHAP { get; set; }
+        public string MA_PHIEUNHAP { get; set; }
         public System.DateTime NGAYTAO { get; set; }
-        public Nullable<int> ID_NV { get; set; }
-        public Nullable<int> ID_DDH { get; set; }
+        public string MA_NV { get; set; }
+        public string MA_DDH { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_PHIEUNHAP> CT_PHIEUNHAP { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DONDATHANG> DONDATHANGs { get; set; }
         public virtual DONDATHANG DONDATHANG { get; set; }
         public virtual NHANVIEN NHANVIEN { get; set; }
     }

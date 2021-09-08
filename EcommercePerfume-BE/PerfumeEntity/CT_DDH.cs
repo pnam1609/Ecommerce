@@ -14,12 +14,12 @@ namespace PerfumeEntity
     
     public partial class CT_DDH
     {
-        public int ID_DDH { get; set; }
-        public int ID_SP { get; set; }
-        public Nullable<int> SOLUONG { get; set; }
-        public string GIA { get; set; }
+        public string MA_DDH { get; set; }
+        public string MA_SP { get; set; }
+        public int SOLUONG { get; set; }
+        public int GIA { get; set; }
     
         public virtual DONDATHANG DONDATHANG { get; set; }
-        public virtual SANPHAM SANPHAM { get; set; }
+        public virtual SanPham SanPham { get; set; }
     }
 }

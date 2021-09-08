@@ -20,7 +20,7 @@ namespace PerfumeEntity
             this.PHIEUDATs = new HashSet<PHIEUDAT>();
         }
     
-        public int ID_KH { get; set; }
+        public string MA_KH { get; set; }
         public string HOTEN { get; set; }
         public System.DateTime NGAYSINH { get; set; }
         public string DIACHI { get; set; }

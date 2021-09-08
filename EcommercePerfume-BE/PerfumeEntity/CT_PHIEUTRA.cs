@@ -14,10 +14,9 @@ namespace PerfumeEntity
     
     public partial class CT_PHIEUTRA
     {
-        public int ID_PHIEUTRA { get; set; }
-        public int ID_PHIEUDAT { get; set; }
-        public int ID_SP { get; set; }
-        public Nullable<int> SOLUONG { get; set; }
+        public string MA_PHIEUTRA { get; set; }
+        public int ID_CTPD { get; set; }
+        public int SOLUONG { get; set; }
     
         public virtual CT_PHIEUDAT CT_PHIEUDAT { get; set; }
         public virtual PHIEUTRA PHIEUTRA { get; set; }

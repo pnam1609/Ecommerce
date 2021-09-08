@@ -26,10 +26,11 @@ namespace PerfumeEntity
         public string SODIENTHOAI { get; set; }
         public string DIACHI { get; set; }
         public System.DateTime NGAYDAT { get; set; }
-        public Nullable<System.DateTime> NGAYGIAO { get; set; }
-        public string TRANGTHAI { get; set; }
-        public Nullable<int> ID_KH { get; set; }
-        public Nullable<int> ID_NV { get; set; }
+        public System.DateTime NGAYGIAO { get; set; }
+        public int TRANGTHAI { get; set; }
+        public string MA_KH { get; set; }
+        public string MA_NV { get; set; }
+        public string TRANSACTIONID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_PHIEUDAT> CT_PHIEUDAT { get; set; }

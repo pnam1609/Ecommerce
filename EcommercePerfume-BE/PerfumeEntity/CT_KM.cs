@@ -14,8 +14,8 @@ namespace PerfumeEntity
     
     public partial class CT_KM
     {
-        public int ID_KM { get; set; }
-        public string ID_DSP { get; set; }
+        public string MA_KM { get; set; }
+        public string MA_DSP { get; set; }
         public double PHANTRAMKM { get; set; }
     
         public virtual DONGSANPHAM DONGSANPHAM { get; set; }

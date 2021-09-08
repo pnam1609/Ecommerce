@@ -15,10 +15,10 @@ namespace PerfumeEntity
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class PERFUMEEntities : DbContext
+    public partial class PerfumeEntities : DbContext
     {
-        public PERFUMEEntities()
-            : base("name=PERFUMEEntities")
+        public PerfumeEntities()
+            : base("name=PerfumeEntities")
         {
         }
     
@@ -44,35 +44,155 @@ namespace PerfumeEntity
         public virtual DbSet<PHIEUDAT> PHIEUDATs { get; set; }
         public virtual DbSet<PHIEUNHAP> PHIEUNHAPs { get; set; }
         public virtual DbSet<PHIEUTRA> PHIEUTRAs { get; set; }
-        public virtual DbSet<SANPHAM> SANPHAMs { get; set; }
+        public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<THAYDOIGIA> THAYDOIGIAs { get; set; }
     
-        public virtual ObjectResult<get_all_employee_Result> get_all_employee()
+        public virtual ObjectResult<discount_line_perfume_Result> discount_line_perfume()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_all_employee_Result>("get_all_employee");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<discount_line_perfume_Result>("discount_line_perfume");
         }
     
-        public virtual ObjectResult<get_all_line_perfume_Result> get_all_line_perfume()
+        public virtual ObjectResult<get_all_discount_line_perfume_Result> get_all_discount_line_perfume()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_all_line_perfume_Result>("get_all_line_perfume");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_all_discount_line_perfume_Result>("get_all_discount_line_perfume");
         }
     
-        public virtual ObjectResult<get_all_perfume_by_hang_Result> get_all_perfume_by_hang(Nullable<int> id)
+        public virtual ObjectResult<get_all_hang_Result> get_all_hang()
         {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_all_perfume_by_hang_Result>("get_all_perfume_by_hang", idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_all_hang_Result>("get_all_hang");
         }
     
-        public virtual ObjectResult<get_all_perfume_by_DSP_Result> get_all_perfume_by_DSP(Nullable<int> id)
+        public virtual ObjectResult<get_all_invoice_Result> get_all_invoice()
         {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_all_invoice_Result>("get_all_invoice");
+        }
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_all_perfume_by_DSP_Result>("get_all_perfume_by_DSP", idParameter);
+        public virtual ObjectResult<get_all_line_perfume_km_Result> get_all_line_perfume_km()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_all_line_perfume_km_Result>("get_all_line_perfume_km");
+        }
+    
+        public virtual ObjectResult<get_all_linePerfume_by_DSP_Result> get_all_linePerfume_by_DSP(string mA_DSP)
+        {
+            var mA_DSPParameter = mA_DSP != null ?
+                new ObjectParameter("MA_DSP", mA_DSP) :
+                new ObjectParameter("MA_DSP", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_all_linePerfume_by_DSP_Result>("get_all_linePerfume_by_DSP", mA_DSPParameter);
+        }
+    
+        public virtual ObjectResult<get_all_perfume_Result> get_all_perfume()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_all_perfume_Result>("get_all_perfume");
+        }
+    
+        public virtual ObjectResult<get_all_perfume_by_hang_Result> get_all_perfume_by_hang(string mA_HANG)
+        {
+            var mA_HANGParameter = mA_HANG != null ?
+                new ObjectParameter("MA_HANG", mA_HANG) :
+                new ObjectParameter("MA_HANG", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_all_perfume_by_hang_Result>("get_all_perfume_by_hang", mA_HANGParameter);
+        }
+    
+        public virtual ObjectResult<get_all_phieudat_Result> get_all_phieudat()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_all_phieudat_Result>("get_all_phieudat");
+        }
+    
+        public virtual ObjectResult<get_all_PN_Result> get_all_PN()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_all_PN_Result>("get_all_PN");
+        }
+    
+        public virtual ObjectResult<get_all_product_Result> get_all_product()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_all_product_Result>("get_all_product");
+        }
+    
+        public virtual ObjectResult<get_all_shipper_Result> get_all_shipper()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_all_shipper_Result>("get_all_shipper");
+        }
+    
+        public virtual ObjectResult<get_all_user_Result> get_all_user()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_all_user_Result>("get_all_user");
+        }
+    
+        public virtual ObjectResult<get_CTDDH_by_MADDH_MASP_Result> get_CTDDH_by_MADDH_MASP(string maddh)
+        {
+            var maddhParameter = maddh != null ?
+                new ObjectParameter("maddh", maddh) :
+                new ObjectParameter("maddh", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_CTDDH_by_MADDH_MASP_Result>("get_CTDDH_by_MADDH_MASP", maddhParameter);
+        }
+    
+        public virtual ObjectResult<get_discount_line_perfume_Result> get_discount_line_perfume()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_discount_line_perfume_Result>("get_discount_line_perfume");
+        }
+    
+        public virtual ObjectResult<get_DSP_KM_SP_Result> get_DSP_KM_SP()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_DSP_KM_SP_Result>("get_DSP_KM_SP");
+        }
+    
+        public virtual ObjectResult<get_employee_Result> get_employee()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_employee_Result>("get_employee");
+        }
+    
+        public virtual ObjectResult<get_line_product_for_display_Result> get_line_product_for_display()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_line_product_for_display_Result>("get_line_product_for_display");
+        }
+    
+        public virtual ObjectResult<string> get_name_product_belong_hang(string mAHANG)
+        {
+            var mAHANGParameter = mAHANG != null ?
+                new ObjectParameter("MAHANG", mAHANG) :
+                new ObjectParameter("MAHANG", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("get_name_product_belong_hang", mAHANGParameter);
+        }
+    
+        public virtual ObjectResult<get_order_by_status_Result> get_order_by_status(Nullable<int> tRANGTHAI)
+        {
+            var tRANGTHAIParameter = tRANGTHAI.HasValue ?
+                new ObjectParameter("TRANGTHAI", tRANGTHAI) :
+                new ObjectParameter("TRANGTHAI", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_order_by_status_Result>("get_order_by_status", tRANGTHAIParameter);
+        }
+    
+        public virtual ObjectResult<get_order_follow_user_by_status_Result> get_order_follow_user_by_status(string mAKH, Nullable<int> status)
+        {
+            var mAKHParameter = mAKH != null ?
+                new ObjectParameter("MAKH", mAKH) :
+                new ObjectParameter("MAKH", typeof(string));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("status", status) :
+                new ObjectParameter("status", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_order_follow_user_by_status_Result>("get_order_follow_user_by_status", mAKHParameter, statusParameter);
+        }
+    
+        public virtual ObjectResult<get_order_supply_Result> get_order_supply()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_order_supply_Result>("get_order_supply");
+        }
+    
+        public virtual ObjectResult<get_order_supply_by_status_Result> get_order_supply_by_status(Nullable<int> status)
+        {
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("status", status) :
+                new ObjectParameter("status", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_order_supply_by_status_Result>("get_order_supply_by_status", statusParameter);
         }
     }
 }

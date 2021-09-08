@@ -1,0 +1,1 @@
+export const FETCH_BRAND = 'FETCH_BRAND';
