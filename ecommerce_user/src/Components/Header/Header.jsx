@@ -8,6 +8,7 @@ export const Header = ({ cart }) => {
     let history = useHistory()
     const [keyword, setKeyword] = useState('')
     const [name, setName] = useState('')
+    const [MA_KH, setMA_KH] = useState("")
 
     var user = localStorage.getItem('user');
     function handleLogout() {
@@ -25,6 +26,7 @@ export const Header = ({ cart }) => {
             let kh = getKh(history)
             if(kh != null){
                 setName(kh.unique_name[0])
+                setMA_KH(kh.actort)
             }
         }
         //eslint-disable-next-line
@@ -83,10 +85,10 @@ export const Header = ({ cart }) => {
                                         </div>
                                         <div className="dropdown-menu dropdown-menu-right shadow animated--fade-out"
                                             aria-labelledby="userDropdown">
-                                            <a className="dropdown-item" href="/#">
+                                            <Link className="dropdown-item" to={`/user/${MA_KH}`}>
                                                 <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                                 Profile
-                                            </a>
+                                            </Link>
                                             <a className="dropdown-item" href="/#">
                                                 <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                                 Settings

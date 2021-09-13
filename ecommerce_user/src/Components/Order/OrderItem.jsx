@@ -12,7 +12,7 @@ export const OrderItem = ({ item }) => {
         if (item.TRANGTHAI === 0) return "Chờ Xét Duyệt"
         else if (item.TRANGTHAI === 1) return "Đang giao hàng"
         else if (item.TRANGTHAI === 2) return "Giao hàng thành công"
-        else return "Đã hủy"
+        else return "Đã bị hủy"
     }
 
     return (

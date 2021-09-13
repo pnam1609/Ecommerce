@@ -43,8 +43,15 @@ namespace EcommercePerfume.Controllers
         [AllowAnonymous]
         public IHttpActionResult Get(string username, string password)
         {
-            var users = perfumeEntities.get_all_user().ToList();
-            var user = users.Where(nv => nv.EMAIL == username && nv.PASS == password).FirstOrDefault();
+            var user = perfumeEntities.KHACHHANGs.Where(nv => nv.EMAIL == username && nv.PASS == password)
+                .Select(kh=> new
+                {
+                    kh.MA_KH,
+                    kh.EMAIL,
+                    kh.HOTEN,
+                    kh.DIACHI,
+                    kh.SODIENTHOAI
+                }).ToList().FirstOrDefault();
             if(user == null)
             {
                 return Ok(new
@@ -61,23 +68,11 @@ namespace EcommercePerfume.Controllers
             user1.HOTEN = user.HOTEN;
             user1.DIACHI = user.DIACHI;
             user1.SODIENTHOAI = user.SODIENTHOAI;
-
-            //================================================
-            if (user != null && user.PASS == password)
-            {
-                var res = new
-                {
-                    result = 1,
-                    role = "KHACHHANG",
-                    token = JwtManager.GenerateTokenUser(user1)
-                };
-                return Ok(res);
-            }
-            //throw new HttpResponseException(HttpStatusCode.Unauthorized);
             return Ok(new
             {
-                result = -1,
-                message = "Sai tài khoản đăng nhập hoặc mật khẩu"
+                result = 1,
+                role = "KHACHHANG",
+                token = JwtManager.GenerateTokenUser(user1)
             });
         }
 
@@ -168,6 +163,7 @@ namespace EcommercePerfume.Controllers
                     message = "Người dùng không tồn tại"
                 });
             }
+
             khachhang.HOTEN = kh.HOTEN;
             khachhang.EMAIL = kh.EMAIL;
             khachhang.SODIENTHOAI = kh.SODIENTHOAI;

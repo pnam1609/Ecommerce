@@ -51,7 +51,8 @@ namespace EcommercePerfume.Controllers
                 hd.PHIEUDAT.DIACHI,
                 TENNVGH = hd.NHANVIEN_GH.HOTEN
 
-            }).ToList();
+            }).OrderByDescending(x=> x.NGAYTAOHD)
+            .ToList();
             return Ok(invoices);
         }
 

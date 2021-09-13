@@ -6,13 +6,14 @@ import { MONEY_RATE } from '../../constants/Config';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { useState } from 'react';
-import { actAddOrderReq } from '../../actions/order';
+import { actAddOrderReq, actCheckQuantity } from '../../actions/order';
 import { useHistory } from 'react-router-dom';
 import callApiPaypal from './../../utils/apiCallerPaypal'
+import callApiForPaypal from './../../utils/apiCallerPaypal';
 
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
-function Total({ cart, onSendFunc, value, onAddOrder }) {
+function Total({ cart, onSendFunc, value, onAddOrder,onCheckQuantity }) {
     var hisotry = useHistory()
     const [paypalActions, setPaypalActions] = useState(null) //biến này lưu lại để bật tắt action khi validate
     const [validationMsg, setvalidationMsg] = useState("")
@@ -56,17 +57,42 @@ function Total({ cart, onSendFunc, value, onAddOrder }) {
 
     };
 
+    function listCTPD(cart) {
+        var list = []
+        for (let index = 0; index < cart.length; index++) {
+            if (cart[index].product.CT_KM !== null) {
+                let itemCart = {
+                    MA_SP: cart[index].product.SanPhams.MA_SP,
+                    SOLUONG: cart[index].quantity,
+                    GIA: Math.round(cart[index].product.SanPhams.GIA * (100 - cart[index].product.CT_KM.PHANTRAMKM) / 100)
+                }
+                list.push(itemCart)
+            } else {
+                let itemCart = {
+                    MA_SP: cart[index].product.SanPhams.MA_SP,
+                    SOLUONG: cart[index].quantity,
+                    GIA: Math.round(cart[index].product.SanPhams.GIA)
+                }
+                list.push(itemCart)
+            }
+        }
+        return list
+    }
+
     const onApprove = (data, actions) => {
         actions.order.capture()
             .then(async () => {
                 console.log(data)
-                let dataPaypal = await callApiPaypal(`v2/checkout/orders/${data.orderID}`, "GET", null, "Bearer A21AAJn-7Lmt4fdgDwKSwb_HlILl8Dx1iwsMIhGsYmAaSS_rObBjTJEu1RmlnAYTDy1L0Xsx1yqncApCTqvoHcleFm2u2-Opg")
-                console.log(dataPaypal)
-                var transactionID = dataPaypal.data.purchase_units[0].payments.captures[0].id
-                console.log(transactionID)
-                setTimeout(() => {
-                    onAddOrder(cart, value, hisotry,transactionID) 
-                }, 2000);
+                let res = await callApiForPaypal("/v1/oauth2/token", "POST")
+                if (res !== undefined) {
+                    console.log(res);
+                    let dataPaypal = await callApiPaypal(`v2/checkout/orders/${data.orderID}`, "GET", null, `Bearer ${res.data.access_token}`)
+                    var transactionID = dataPaypal.data.purchase_units[0].payments.captures[0].id
+                    console.log(transactionID)
+                    setTimeout(() => {
+                        onAddOrder(cart, value, hisotry, transactionID)
+                    }, 2000);
+                }
             })
     };
 
@@ -87,16 +113,25 @@ function Total({ cart, onSendFunc, value, onAddOrder }) {
     //     callApiPaypal()
     // }
 
-    function validateAll() {
+    async function validateAll() {
         var msg = {}
 
         // sau này cần sửa thêm fetch api ra số lượng tồn để đặt chính xác k gặp trường hợp đặt dư số lượng tồn
-        cart.forEach(element => {
-            if (element.quantity > element.product.SanPhams.SOLUONGTON) {
-                msg.SOLUONG = `Số lượng tồn ${element.TEN} còn ${element.product.SanPhams.SOLUONGTON} Vui lòng đặt ít hơn`
-                return
-            }
-        });
+        let orderUser = {
+            CT_PHIEUDAT: listCTPD(cart)
+        }
+
+        let res = await onCheckQuantity(orderUser)
+        if(res.result !== 1){
+            msg.SOLUONG = res.message
+        }
+
+        // cart.forEach(element => {
+        //     if (element.quantity > element.product.SanPhams.SOLUONGTON) {
+        //         msg.SOLUONG = `Số lượng tồn ${element.TEN} còn ${element.product.SanPhams.SOLUONGTON} Vui lòng đặt ít hơn`
+        //         return
+        //     }
+        // });
 
         setvalidationMsg(msg)
         if (Object.keys(msg).length > 0) return false
@@ -174,8 +209,11 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => {
     return ({
-        onAddOrder: (cart, value, hisotry,transactionID) => {
-            dispatch(actAddOrderReq(cart, value, hisotry,transactionID))
+        onAddOrder: (cart, value, hisotry, transactionID) => {
+            dispatch(actAddOrderReq(cart, value, hisotry, transactionID))
+        },
+        onCheckQuantity: order => {
+            return dispatch(actCheckQuantity(order))
         }
     })
 }

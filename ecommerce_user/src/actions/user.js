@@ -1,4 +1,5 @@
 import callApi from "../utils/apiCaller";
+import { getTokenUser } from "./getUser";
 
 export const actSignUpReq = (user) => {
     return async () => {
@@ -6,6 +7,14 @@ export const actSignUpReq = (user) => {
             if(res.data.result === 1){
                 return 1
             }else return res
+        });
+    }
+}
+
+export const actUpdateUser = (user) => {
+    return async () => {
+        return await callApi('User', 'PUT', user, `Bearer ${getTokenUser()}`).then(res => {
+            return res.data
         });
     }
 }

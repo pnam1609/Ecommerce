@@ -14,13 +14,18 @@ export const OrderItem = ({ item, onUpdateOrder }) => {
         if (item.TRANGTHAI === 0) return "Chờ Xét Duyệt"
         else if (item.TRANGTHAI === 1) return "Đang giao hàng"
         else if (item.TRANGTHAI === 2) return "Giao hàng thành công"
-        else return "Đã hủy"
+        else return "Đã bị hủy "
     }
 
     function handleUpdateOrder(item, status) {
         var itemUpdate = item
         itemUpdate.TRANGTHAI = status// status: 1 là confirm order // 2 là success // 3 là bị hủy
+        itemUpdate = {
+            ...itemUpdate,
+            CT_PHIEUDAT : itemUpdate.CT_PD
+        }
         onUpdateOrder(itemUpdate, status, history, item.TRANSACTIONID == null ? item.TRANSACTIONID : item.TRANSACTIONID.trim())
+        // console.log(itemUpdate);
     }
 
     function renderActionChangeStatus() {
@@ -44,7 +49,6 @@ export const OrderItem = ({ item, onUpdateOrder }) => {
         }
         else return ""
     }
-    console.log(item)
 
     return (
         <tr>
@@ -59,6 +63,11 @@ export const OrderItem = ({ item, onUpdateOrder }) => {
                 <button type="button" className="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" onClick={toggle}>
                     <i className="fas fa-info-circle"></i>&nbsp;Info
                 </button>
+                {
+                    item.TRANGTHAI === 0 ? <Link to={`/editOrder/${item.ID_PHIEUDAT}`}>
+                        <button type="button" className="btn btn-info" ><i className="fas fa-edit"></i>&nbsp;Sửa</button>
+                    </Link> : ""
+                }
             </td>
             <DetailOrder item={item} isShowing={isShowing} hide={toggle} />
         </tr>

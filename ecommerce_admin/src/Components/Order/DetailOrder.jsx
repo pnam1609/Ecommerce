@@ -17,7 +17,7 @@ const Modal = ({ isShowing, hide, item }) => isShowing ? ReactDOM.createPortal(
                                 <div className="card">
                                     <div className="text-left logo p-2 px-5"></div>
                                     <div className="invoice p-5">
-                                        <h5>Chi tiết đơn đặt hàng</h5> <span className="font-weight-bold d-block mt-4">Chào, {item.HOTEN}</span> <span>Đơn hàng của bạn sẽ được giao vào ngày {formatDate(new Date(item.NGAYGIAO))}</span>
+                                        <h5>Chi tiết đơn đặt hàng</h5> <span>Đơn hàng sẽ được giao vào ngày {formatDate(new Date(item.NGAYGIAO))}</span>
                                         <div className="payment border-top mt-3 mb-3 border-bottom table-responsive">
                                             <table className="table table-borderless">
                                                 <tbody>
@@ -42,7 +42,8 @@ const Modal = ({ isShowing, hide, item }) => isShowing ? ReactDOM.createPortal(
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <p style={{ marginLeft: 10 }}>Địa chỉ :&nbsp;&nbsp; {item.DIACHI}</p>
+                                            <p style={{ marginLeft: 10 }}>Địa chỉ :  {item.DIACHI}</p>
+                                            <p style={{ marginLeft: 10 }}>Ghi chú :  {item.GHICHU}</p>
                                         </div>
                                         <div className="product border-bottom table-responsive">
                                             <table className="table table-borderless">
@@ -85,8 +86,6 @@ const Modal = ({ isShowing, hide, item }) => isShowing ? ReactDOM.createPortal(
                                                 </table>
                                             </div>
                                         </div>
-                                        <p>Chúng tôi sẽ gửi đơn đặt hàng của bạn qua Email !</p>
-                                        <p className="font-weight-bold mb-0">Cảm ơn khi đã mua sắm ở website của chúng tôi!</p> <span>Perfume Team</span>
                                     </div>
                                     <div className="d-flex justify-content-between footer p-3"> <span>Need Help? visit our <a href="/#"> help center</a></span> <span>{formatDate(new Date(item.NGAYDAT))}</span> </div>
                                 </div>

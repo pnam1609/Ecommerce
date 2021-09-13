@@ -6,6 +6,9 @@ import isEmail from 'validator/lib/isEmail'
 import { Link } from 'react-router-dom';
 
 export const SignInPage = ({ history }) => {
+    const [username, setusername] = useState("")
+    const [password, setpassword] = useState("")
+    const [validationMsg, setvalidationMsg] = useState("")
 
     useEffect(() => {
         let data = JSON.parse(localStorage.getItem("user"))
@@ -29,9 +32,7 @@ export const SignInPage = ({ history }) => {
         }// eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const [username, setusername] = useState("")
-    const [password, setpassword] = useState("")
-    const [validationMsg, setvalidationMsg] = useState("")
+    
 
     function hasWhiteSpace(s) {
         return s.indexOf(' ') >= 0;

@@ -12,6 +12,8 @@ import ReactDatePicker from 'react-datepicker';
 import { getTokenEmployee } from './../../actions/getNV'
 import { v4 as uuidv4 } from 'uuid'
 import NumberFormat from 'react-number-format';
+// import { CKEditor } from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const MySwal = withReactContent(Swal)
 
@@ -57,6 +59,7 @@ export const LineProductActionPage = ({ brand, match, onFetchBrand, onAddLinePro
         var OrderSupplyDetail = await callApi(`LinePerfume/${match.params.id}`, 'GET', null, `Bearer ${getTokenEmployee()}`).then(res => {
           return res.data
         });
+        console.log(OrderSupplyDetail)
         setValue({
           ...OrderSupplyDetail,
           MA_HANG: OrderSupplyDetail.HANG.MA_HANG
@@ -262,6 +265,7 @@ export const LineProductActionPage = ({ brand, match, onFetchBrand, onAddLinePro
       }
     }
   }
+  // console.log(value)
   return (
 
     <div id="wrapper" >
@@ -348,6 +352,12 @@ export const LineProductActionPage = ({ brand, match, onFetchBrand, onAddLinePro
               <div className="form-group">
                 <label value={value.MOTA} className=" control-label" htmlFor="MOTA">Mô Tả</label>
                 <textarea onChange={e => setValue({ ...value, MOTA: e.target.value })} value={value.MOTA} className="form-control" id="MOTA" name="MOTA"></textarea>
+                {/* <CKEditor
+                  editor={ClassicEditor}
+                  data={value.MOTA}
+                  className="form-control" id="MOTA" name="MOTA"
+                  onChange={(e, editor) => setValue({ ...value, MOTA: editor.getData()})}
+                /> */}
               </div>
               {/* hình ảnh */}
               <div className="form-group">

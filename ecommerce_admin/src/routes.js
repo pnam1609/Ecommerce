@@ -24,6 +24,7 @@ import ShipperPage from './Pages/ShipperPage/ShipperPage'
 import ShipperActionPage from "./Pages/ShipperPage/ShipperActionPage";
 import UserPage from './Pages/UserPage/UserPage'
 import UserActionPage from "./Pages/UserPage/UserActionPage";
+import OrderUserActionPage from "./Pages/OrderUserPage/OrderUserActionPage";
 
 const routes = [
     {
@@ -129,6 +130,12 @@ const routes = [
         path: '/order',
         exact: true,
         main: ({ history }) => <OrderUserPage history={history} />
+    },
+    {
+        path: '/editOrder/:id',
+        exact: false,
+        main: ({ history, match }) => <OrderUserActionPage match={match} history={history} />
+
     },
     {
         path: '/brand',

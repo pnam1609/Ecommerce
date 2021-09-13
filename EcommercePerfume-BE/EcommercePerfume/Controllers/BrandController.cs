@@ -18,7 +18,14 @@ namespace EcommercePerfume.Controllers
         [AllowAnonymous]
         public IHttpActionResult Get()
         {
-            var brands = perfumeEntities.get_all_hang().ToList();
+            var brands = perfumeEntities.HANGs.Select(h => new
+            {
+                h.MA_HANG,
+                h.TENHANG,
+                h.EMAIL,
+                h.SODIENTHOAI,
+                h.DIACHI
+            }).ToList();
             if (brands == null)
             {
                 return Ok(new
@@ -82,7 +89,7 @@ namespace EcommercePerfume.Controllers
                 });
             }
             
-            var bra = perfumeEntities.HANGs.Where(h=> h.MA_HANG == brand.MA_HANG || h.EMAIL == brand.EMAIL.Trim())
+            var bra = perfumeEntities.HANGs.Where(h=> h.MA_HANG == brand.MA_HANG || h.EMAIL == brand.EMAIL.Trim() || h.SODIENTHOAI == brand.SODIENTHOAI || h.TENHANG == brand.TENHANG)
                 .Select(x=>x.MA_HANG).FirstOrDefault();
             if(bra != null)
             {
@@ -112,6 +119,18 @@ namespace EcommercePerfume.Controllers
                 {
                     result = -1,
                     message = "Hãng không tồn tại để sửa"
+                });
+            }
+            var checkDuplicate = perfumeEntities.HANGs.Where(h => h.MA_HANG != brand.MA_HANG
+                                && (h.SODIENTHOAI == brand.SODIENTHOAI || h.EMAIL == brand.EMAIL || h.TENHANG == brand.TENHANG))
+                .Select(x => x.MA_HANG);
+            
+            if(checkDuplicate != null)
+            {
+                return Ok(new
+                {
+                    result = -2,
+                    message = "Tên hãng, số điện thoại hoặc email đã trùng với hãng khác"
                 });
             }
 

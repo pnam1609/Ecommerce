@@ -6,8 +6,10 @@ import NavigationSwitchPage from './../Navigation/NavigationSwitchPage'
 import { actFetchLineProductsRequest } from './../../actions/index'
 import { Link } from 'react-router-dom'
 import { actFetchProductsRequest } from '../../actions/product'
+// import callApiForPaypal from '../../utils/apiCallerPaypal'
 // import NumberFormat from 'react-number-format'
-// import { DetailLineProduct } from './DetailLineProduct'
+// import { DetailLineProduct } from './DetailLineProduct'=
+
 
 const LineProductList = ({ products, onFetchProduct, lineProduct, onFetchLineProduct }) => {
     const [filter, setfilter] = useState("")
@@ -43,8 +45,14 @@ const LineProductList = ({ products, onFetchProduct, lineProduct, onFetchLinePro
         async function fectchLinepro() {
             await onFetchLineProduct()
             await onFetchProduct()
+            
         }
         fectchLinepro()
+        // console.log(process.env.REACT_APP_CLIENT_ID);
+        // console.log(process.env.REACT_APP_SECRET);
+
+
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

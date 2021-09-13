@@ -42,6 +42,7 @@ namespace EcommercePerfume.Controllers
                 pd.DIACHI,
                 pd.TRANGTHAI,
                 pd.TRANSACTIONID,
+                pd.GHICHU,
                 CT_PD = pd.CT_PHIEUDAT.Select(ctpd => new
                 {
                     ctpd.SanPham.DONGSANPHAM.TEN,
@@ -63,7 +64,7 @@ namespace EcommercePerfume.Controllers
 
 
         }
-
+        
 
         [JwtAuthentication]
         public IHttpActionResult Get(String MA_KH,int TRANGTHAI)
@@ -81,6 +82,7 @@ namespace EcommercePerfume.Controllers
                     pd.DIACHI,
                     pd.TRANGTHAI,
                     pd.TRANSACTIONID,
+                    pd.GHICHU,
                     CT_PD = pd.CT_PHIEUDAT.Select(ctpd => new
                     {
                         ctpd.SanPham.DONGSANPHAM.TEN,
@@ -133,8 +135,12 @@ namespace EcommercePerfume.Controllers
                     pd.DIACHI,
                     pd.TRANGTHAI,
                     pd.TRANSACTIONID,
+                    pd.GHICHU,
                     CT_PD = pd.CT_PHIEUDAT.Select(ctpd => new
                     {
+                        ctpd.ID_CTPD,
+                        ctpd.MA_SP,
+                        ctpd.ID_PHIEUDAT,
                         ctpd.SanPham.DONGSANPHAM.TEN,
                         ctpd.SanPham.DUNGTICH,
                         ctpd.GIA,
@@ -162,21 +168,23 @@ namespace EcommercePerfume.Controllers
             var pd = perfumeEntities.PHIEUDATs.Find(id);
             var res = new
             {
-                MA_NV = pd.MA_NV,
-                HOTEN = pd.HOTEN,
-                DIACHI = pd.DIACHI,
-                SODIENTHOAI = pd.SODIENTHOAI,
-                NGAYDAT = pd.NGAYDAT,
-                NGAYGIAO = pd.NGAYGIAO,
-                TRANGTHAI = pd.TRANGTHAI,
-                MA_KH = pd.MA_KH,
+                pd.MA_NV,
+                pd.HOTEN,
+                pd.DIACHI,
+                pd.SODIENTHOAI,
+                pd.NGAYDAT,
+                pd.NGAYGIAO,
+                pd.TRANGTHAI,
+                pd.MA_KH,
                 pd.TRANSACTIONID,
+                pd.GHICHU,
+                pd.ID_PHIEUDAT,
                 CT_PHIEUDAT = pd.CT_PHIEUDAT.Select(CT_PD => new
                 {
-                    ID_PHIEUDAT = CT_PD.ID_PHIEUDAT,
-                    MA_SP = CT_PD.MA_SP,
-                    SOLUONG = CT_PD.SOLUONG,
-                    GIA = CT_PD.GIA
+                    CT_PD.ID_PHIEUDAT,
+                    CT_PD.MA_SP,
+                    CT_PD.SOLUONG,
+                    CT_PD.GIA
                 })
             };
             return Ok(res);
@@ -220,7 +228,7 @@ namespace EcommercePerfume.Controllers
             });
         }
         [JwtAuthentication]
-        public IHttpActionResult Put([FromBody] PHIEUDAT pd)
+        public IHttpActionResult Put([FromBody] PHIEUDAT pd,bool isUpdateStatus)
         {
             var phieuDat = perfumeEntities.PHIEUDATs.Find(pd.ID_PHIEUDAT);
             if (phieuDat == null)
@@ -231,26 +239,42 @@ namespace EcommercePerfume.Controllers
                     message = "Không tìm thấy mã phiếu đặt"
                 });
             }
-
-            phieuDat.TRANGTHAI = pd.TRANGTHAI;
-            phieuDat.MA_NV = pd.MA_NV;
-            //khi trạng thái chuyển sang hủy thì cần trả lại số lượng tồn
-            if (pd.TRANGTHAI.Equals(3))
+            if (isUpdateStatus)
             {
-                var phieud = perfumeEntities.CT_PHIEUDAT.Where(ct => ct.ID_PHIEUDAT == pd.ID_PHIEUDAT);
-                foreach (var ele in phieud)
+                phieuDat.TRANGTHAI = pd.TRANGTHAI;
+                phieuDat.MA_NV = pd.MA_NV;
+                //khi trạng thái chuyển sang hủy thì cần trả lại số lượng tồn
+                if (pd.TRANGTHAI.Equals(3))
                 {
-                    var sp = perfumeEntities.SanPhams.Find(ele.MA_SP);
-                    sp.SOLUONGTON += ele.SOLUONG;
-                }
-            }
+                    //var phieud = perfumeEntities.CT_PHIEUDAT.Where(ct => ct.ID_PHIEUDAT == pd.ID_PHIEUDAT);
 
-            perfumeEntities.SaveChanges();
-            return Ok(new
+                    foreach (var ele in pd.CT_PHIEUDAT)
+                    {
+                        var sp = perfumeEntities.SanPhams.Find(ele.MA_SP);
+                        sp.SOLUONGTON += ele.SOLUONG;
+                    }
+                }
+                perfumeEntities.SaveChanges();
+                return Ok(new
+                {
+                    result = 1,
+                    message = "Sửa trạng thái của phiếu đặt thành công"
+                });
+            }
+            else
             {
-                result = 1,
-                message = "Sửa trạng thái của phiếu đặt thành công"
-            });
+                phieuDat.NGAYGIAO = pd.NGAYGIAO;
+                phieuDat.MA_NV = pd.MA_NV;
+                perfumeEntities.SaveChanges();
+                return Ok(new
+                {
+                    result = 1,
+                    message = "Sửa ngày giao thành công"
+                });
+            }
+            
+
+            
         }
     }
 }

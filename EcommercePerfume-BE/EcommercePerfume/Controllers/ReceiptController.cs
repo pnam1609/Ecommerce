@@ -31,7 +31,8 @@ namespace EcommercePerfume.Controllers
                     ct.SOLUONG,
                     ct.GIA
                 })
-            }).ToList();
+            }).OrderByDescending(x=> x.NGAYTAO)
+            .ToList();
             if (phieuNhap.Count == 0)
             {
                 return Ok(new

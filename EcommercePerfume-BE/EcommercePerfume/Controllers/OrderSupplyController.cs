@@ -34,7 +34,7 @@ namespace EcommercePerfume.Controllers
                     ctddh.SOLUONG,
                     ctddh.GIA,
                 })
-            });
+            }).OrderByDescending(x=> x.NGAYDAT);
 
             if (orderSupply == null)
             {
@@ -82,7 +82,24 @@ namespace EcommercePerfume.Controllers
         [AllowAnonymous]
         public IHttpActionResult Get(int TrangThai)
         {
-            var orderSupply = perfumeEntities.get_order_supply_by_status(TrangThai).ToList();
+            //var orderSupply = perfumeEntities.get_order_supply_by_status(TrangThai).ToList();
+            var orderSupply = perfumeEntities.DONDATHANGs.Select(ddh => new
+            {
+                ddh.MA_DDH,
+                ddh.NGAYDAT,
+                ddh.TRANGTHAI,
+                ddh.NGAYNHANHANG,
+                ddh.MA_HANG,
+                ddh.MA_NV,
+                CT_DDH = ddh.CT_DDH.Select((ct, index) => new
+                {
+                    id = index,
+                    ct.MA_DDH,
+                    ct.MA_SP,
+                    ct.SOLUONG,
+                    ct.GIA
+                })
+            }).OrderByDescending(x => x.NGAYDAT);
             if (orderSupply == null)
             {
                 return Ok(new

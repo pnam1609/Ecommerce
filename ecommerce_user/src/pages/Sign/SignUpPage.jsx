@@ -4,13 +4,14 @@ import callApi from '../../utils/apiCaller'
 import isEmpty from "validator/lib/isEmpty"
 import isEmail from "validator/lib/isEmail"
 import ReactDatePicker from 'react-datepicker'
-import { actSignUpReq } from '../../actions/user'
+import { actSignUpReq, actUpdateUser } from '../../actions/user'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { getTokenUser } from '../../actions/getUser'
 
 const MySwal = withReactContent(Swal)
-export const SignUpPage = ({ match, history, handleSignUp }) => {
+export const SignUpPage = ({ match, history, handleSignUp, handleUpdateUser }) => {
 
     const [checkAdd, setcheckAdd] = useState(true)
     // const [order, setOrder] = useState(null)
@@ -85,7 +86,7 @@ export const SignUpPage = ({ match, history, handleSignUp }) => {
             if (match.params.id === undefined) {
                 setcheckAdd(true)
             } else {
-                await callApi(`User/${match.params.id}`, 'GET', null, null).then(res => {
+                await callApi(`User/${match.params.id}`, 'GET', null, `Bearer ${getTokenUser()}`).then(res => {
                     // setuser(res.data)
                     setuser({
                         ...res.data,
@@ -110,7 +111,7 @@ export const SignUpPage = ({ match, history, handleSignUp }) => {
             // console.log(JSON.stringify(user))
             if (checkAdd === true) {
                 let res = await handleSignUp(user)
-                if(res === 1){
+                if (res === 1) {
                     MySwal.fire({
                         icon: 'success',
                         title: 'Tạo tài khoản thành công',
@@ -118,7 +119,7 @@ export const SignUpPage = ({ match, history, handleSignUp }) => {
                         timer: 1500
                     })
                     history.push('/signin')
-                }else{
+                } else {
                     MySwal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -126,7 +127,23 @@ export const SignUpPage = ({ match, history, handleSignUp }) => {
                     })
                 }
             } else {
-
+                let res = await handleUpdateUser(user);
+                console.log(res);
+                if (res.result === 1) {
+                    MySwal.fire({
+                        icon: 'success',
+                        title: 'Sửa thông tin thành công',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    history.goBack()
+                } else {
+                    MySwal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: res.message
+                    })
+                }
             }
 
         }
@@ -138,13 +155,13 @@ export const SignUpPage = ({ match, history, handleSignUp }) => {
                 <div className="card o-hidden border-0 shadow-lg my-5">
                     <div className="container" >
                         {/* style ={{marginLeft: 220}} */}
-                        <div className="text-center" style={{marginTop: 40,fontSize: 20}}>
-                            <Link to='/' className="fas fa-home" style={{textDecoration: 'none'}}></Link>
+                        <div className="text-center" style={{ marginTop: 40, fontSize: 20 }}>
+                            <Link to='/' className="fas fa-home" style={{ textDecoration: 'none' }}></Link>
                         </div>
 
                         <div className="py-3 mb-20" >
                             <h3 className="m-0 font-weight-bold text-primary" style={{ textAlign: 'center' }}>
-                                {checkAdd ? "Tạo tài khoản" : "SỬA thông tin cá nhân"}
+                                {checkAdd ? "Tạo tài khoản" : "Sửa thông tin cá nhân"}
                             </h3>
                         </div>
 
@@ -208,7 +225,7 @@ export const SignUpPage = ({ match, history, handleSignUp }) => {
                                 <small className="form-text text-danger">{validationMsg.EMAIL}</small>
                             </div>
 
-                            {checkAdd ? <div className="form-group">
+                            <div className="form-group">
                                 <label className="control-label" htmlFor="HOTEN">Mật khẩu(<small className="text-danger">*</small>)</label>
                                 <input id="HOTEN" value={user.PASS}
                                     className="form-control input-md" type="password"
@@ -216,7 +233,7 @@ export const SignUpPage = ({ match, history, handleSignUp }) => {
                                     placeholder="Mật khẩu"
                                 />
                                 <small className="form-text text-danger">{validationMsg.PASS}</small>
-                            </div> : ""}
+                            </div>
 
                             <button style={{ marginBottom: 40, width: '100%' }} type="submit" className="btn btn-primary">Submit</button>
                         </form>
@@ -237,6 +254,9 @@ const mapDispatchToProps = dispatch => {
     return ({
         handleSignUp: user => {
             return dispatch(actSignUpReq(user))
+        },
+        handleUpdateUser: user => {
+            return dispatch(actUpdateUser(user))
         }
     })
 }

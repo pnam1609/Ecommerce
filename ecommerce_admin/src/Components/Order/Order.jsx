@@ -36,7 +36,7 @@ export const Order = (props) => {
 
     return (
         <div>
-            <h2 className="text-center" style={{marginTop: 30}}>ĐƠN ĐẶT HÀNG</h2>
+            <h2 className="text-center" style={{marginTop: 30}}>PHIẾU ĐẶT CỦA KHÁCH HÀNG</h2>
             <div className="tabs d-flex justify-content-center">
                 <div className="tab-item active" ref={el => itemRef.current[0] = el} onClick={e => handleClick(e)}>
                     <i className="tab-icon fas fa-hourglass-half"></i>

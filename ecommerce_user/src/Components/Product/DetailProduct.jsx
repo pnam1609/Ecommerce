@@ -212,10 +212,11 @@ const DetailProduct = ({ match, onAddtoCart }) => {
                             <article className="card mt-4">
                                 <div className="card-body">
                                     <h4>Mô tả</h4>
-                                    <p>Nước Hoa Versace Eros 5ml Nam là chai nước hoa Nam nguồn cảm hứng từ vị thần tình yêu trong thần thoại Hy Lạp. Chai Versace Eros 5ml cho nam là biểu tượng cho thần tình yêu Hy Lạp, đại diện của tình yêu, là trung tâm của các hương thơm, là sự kết hợp và thể hiện của niềm đam mê vô tận và ham muốn mãnh liệt.</p>
+                                    {/* <p>Nước Hoa Versace Eros 5ml Nam là chai nước hoa Nam nguồn cảm hứng từ vị thần tình yêu trong thần thoại Hy Lạp. Chai Versace Eros 5ml cho nam là biểu tượng cho thần tình yêu Hy Lạp, đại diện của tình yêu, là trung tâm của các hương thơm, là sự kết hợp và thể hiện của niềm đam mê vô tận và ham muốn mãnh liệt.</p>
                                     <p> Những chai nước hoa của Versace được lấy cảm hứng và kết nối sâu sắc từ thần thoại Hy Lạp. Versace Eros mang một hương vị nam tính đầy mạnh mẽ thể hiện sự cuốn hút và gợi cảm của nam giới.</p>
                                     <p>Hãng Versace đã cho thiết kế chai xanh ngọc trong suốt đầy ấn tượng, Nước hoa Versace Eros 5ml ẩn giấu hương thơm mạnh mẽ, cá tính pha chút nồng ấm của gỗ Phương Đông.</p>
-                                    <p>Chuyên gia Aurelien Guichard, ông đã đem hương vị phương Đông kết hợp với cảm hứng thần thoại Hy Lạp để tạo ra sản phẩm chai Versace Eros for men 5ml.</p>
+                                    <p>Chuyên gia Aurelien Guichard, ông đã đem hương vị phương Đông kết hợp với cảm hứng thần thoại Hy Lạp để tạo ra sản phẩm chai Versace Eros for men 5ml.</p> */}
+                                    {detail == null ? "" : <td dangerouslySetInnerHTML={{__html: detail.MOTA}} />}
                                 </div>
                             </article>
                         </div>

@@ -1,21 +1,20 @@
 import axios from "axios";
+import qs from 'qs'
 
-export default function callApiForPaypalGetToken(endpoint, method = 'POST') {
-    return axios({
-        method,
-        url: `https://api-m.sandbox.paypal.com/${endpoint}`,
-        data: {
-            grant_type: "client_credentials"
+export default function callApiForPaypalGetToken(endpoint, method = 'POST',body, token = null) {
+    return axios.request({
+        url: endpoint,
+        method: method,
+        baseURL: "https://api-m.sandbox.paypal.com/",
+        auth: {
+            username: process.env.REACT_APP_CLIENT_ID,
+            password: process.env.REACT_APP_SECRET
         },
         headers: {
-            Accept: "application/json",
-            Authorization: btoa(process.env.REACT_APP_CLIENT_ID + ":" + process.env.REACT_APP_SECRET)
+            "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
         },
-        // auth: {
-        //     username: process.env.REACT_APP_CLIENT_ID,
-        //     password: process.env.REACT_APP_SECRET
-        // }
-    }).catch(err => {
-        console.log(err);
-    });
+        data: qs.stringify({
+            "grant_type": "client_credentials"
+        })
+    }).catch(err => console.log(err));
 }

@@ -52,7 +52,10 @@ function ProductItems({ item, onAddToCart, grid }) {
                     </div>
                 </Link>
                 <div className="bottom-wrap">
-                    <button className="btn btn-sm btn-primary float-right" onClick={() => { handleAddToCart(item) }}>Add To Cart</button>
+                    <button className="btn btn-sm btn-primary float-right" disabled={item.SanPhams.SOLUONGTON <= 0 ? true : false}
+                        onClick={() => { handleAddToCart(item) }}>
+                        {item.SanPhams.SOLUONGTON <= 0 ? "Out of stock" : "Add To Cart"}
+                    </button>
                     <div className="price-wrap h6" style={{ textDecoration: 'none' }}>
                         {/* <span className="price-new">{item.CT_KM !== null ? item.SanPhams.GIA * (100 - item.CT_KM.PHANTRAMKM) / 100 : item.SanPhams.GIA}đ</span> */}
                         <NumberFormat displayType="text" thousandSeparator={true} value={item.CT_KM !== null ? item.SanPhams.GIA * (100 - item.CT_KM.PHANTRAMKM) / 100 : item.SanPhams.GIA} suffix={"đ"} />

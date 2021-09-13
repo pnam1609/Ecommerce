@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react'
 import "./../../assets/css/sb-admin-2.min.css";
 import callApi from '../../utils/apiCaller';
 import jwt_decode from "jwt-decode";
+import isEmail from 'validator/lib/isEmail'
 
 export const Login = (props) => {
+    const [username, setusername] = useState("")
+    const [password, setpassword] = useState("")
+    const [validationMsg, setvalidationMsg] = useState("")
 
     useEffect(() => {
         let data = JSON.parse(localStorage.getItem("employee"))
@@ -22,22 +26,54 @@ export const Login = (props) => {
         }// eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const [username, setusername] = useState("")
-    const [password, setpassword] = useState("")
+    function hasWhiteSpace(s) {
+        return s.indexOf(' ') >= 0;
+    }
 
-    function handleSubmit(e) {
+    const validateAll = () => {
+        var msg = {}
+        if (username.trim() === "") {
+            msg.username = "Trường này không được để trống"
+        } else if (!isEmail(username)) {
+            msg.username = "Trường này phải là email"
+        } else if (hasWhiteSpace(username)) {
+            msg.username = "Trường này không được có khoảng trắng"
+        }
+
+        if (password.trim() === "") {
+            msg.password = "Trường này không được để trống"
+        } else if (password.length < 6) {
+            msg.password = "Password cần nhiều hơn 6 kí tự"
+        } else if (hasWhiteSpace(password)) {
+            msg.password = "Trường này không được có khoảng trắng"
+        }
+        setvalidationMsg(msg)
+        if (Object.keys(msg).length > 0) return false
+        return true
+    }
+
+
+
+    async function handleSubmit(e) {
         e.preventDefault()
         // props.onLogin(username, password)
-
-        callApi(`Employee?username=${username}&password=${password}`, 'GET', null, null).then(res => {
-            if (res.data.result === 1) {
-                console.log(res.data.token)
-                localStorage.setItem("employee", JSON.stringify(res.data))
+        const isvalid = validateAll()
+        if (isvalid) {
+            let res = await callApi(`Employee?username=${username}&password=${password}`, 'GET', null, null).then(res => {
+                return res.data
+            })
+            console.log(res);
+            if (res.result === 1) {
+                localStorage.setItem("employee", JSON.stringify(res))
                 props.history.push('/')
             } else {
-                console.log("dang nhao that bai")
+                setvalidationMsg({
+                    error: 'Sai tên đăng nhập hoặc mật khẩu'
+                })
             }
-        })
+        }
+
+
     }
 
     return (
@@ -50,8 +86,8 @@ export const Login = (props) => {
                             {/* <!-- Nested Row within Card Body --> */}
                             <div className="row">
                                 <div className="col-lg-6 d-none d-lg-block">
-                                    <img src="https://images.unsplash.com/photo-1535683577427-740aaac4ec25?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyZnVtZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80" alt="" 
-                                    style={{maxWidth: '100%',maxHeight: '100%'}}
+                                    <img src="https://images.unsplash.com/photo-1535683577427-740aaac4ec25?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyZnVtZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80" alt=""
+                                        style={{ maxWidth: '100%', maxHeight: '100%' }}
                                     />
                                 </div>
                                 <div className="col-lg-6">
@@ -65,15 +101,24 @@ export const Login = (props) => {
                                                     id="exampleInputEmail" aria-describedby="emailHelp"
                                                     placeholder="Enter Email Address..." name="username"
                                                     onChange={e => setusername(e.target.value)} />
+                                                <small className="form-text text-danger d-flex justify-content-center">
+                                                    {validationMsg.username}
+                                                </small>
                                             </div>
                                             <div className="form-group">
                                                 <input type="password" className="form-control form-control-user"
                                                     id="exampleInputPassword" placeholder="Password" name="password"
                                                     onChange={e => setpassword(e.target.value)} />
+                                                <small className="form-text text-danger d-flex justify-content-center" >
+                                                    {validationMsg.password}
+                                                </small>
                                             </div>
                                             <button className="btn btn-primary btn-user btn-block">
                                                 Login
                                             </button>
+                                            <small className="form-text text-danger d-flex justify-content-center">
+                                                {validationMsg.error}
+                                            </small>
                                         </form>
                                         <hr />
                                         <div className="text-center">

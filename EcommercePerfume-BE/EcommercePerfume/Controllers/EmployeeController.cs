@@ -25,7 +25,17 @@ namespace EcommercePerfume.Controllers
         [JwtAuthentication]
         public IHttpActionResult Get()
         {
-            var employees = perfumeEntities.get_employee().ToList();
+            var employees = perfumeEntities.NHANVIENs
+                .Select(x => new
+                {
+                    x.MA_NV,
+                    x.HOTEN,
+                    x.NGAYSINH,
+                    x.DIACHI,
+                    x.SODIENTHOAI,
+                    x.EMAIL,
+                    x.PASS
+                }).ToList();
             if (employees.Count == 0)
             {
                 return Ok(new
@@ -42,13 +52,13 @@ namespace EcommercePerfume.Controllers
             var employee = perfumeEntities.NHANVIENs.Where(x => x.MA_NV == id)
                 .Select(x => new
                 {
-                    MA_NV = x.MA_NV,
-                    HOTEN = x.HOTEN,
-                    NGAYSINH = x.NGAYSINH,
-                    DIACHI = x.DIACHI,
-                    SODIENTHOAI = x.SODIENTHOAI,
-                    EMAIL = x.EMAIL,
-                    PASS = x.PASS
+                    x.MA_NV,
+                    x.HOTEN,
+                    x.NGAYSINH,
+                    x.DIACHI,
+                    x.SODIENTHOAI,
+                    x.EMAIL,
+                    x.PASS
                 }).FirstOrDefault();
             if (employee == null)
             {
@@ -65,7 +75,7 @@ namespace EcommercePerfume.Controllers
         public IHttpActionResult Get(string username, string password)
         {
             //var employees = perfumeEntities.get_all_employee().ToList();
-            var employee = perfumeEntities.NHANVIENs.Where(nv => nv.EMAIL == username).FirstOrDefault();
+            var employee = perfumeEntities.NHANVIENs.Where(nv => nv.EMAIL == username && nv.PASS == password).FirstOrDefault();
             if (employee == null)
             {
                 return Ok(new
@@ -79,23 +89,11 @@ namespace EcommercePerfume.Controllers
             nv1.MA_NV = employee.MA_NV;
             nv1.EMAIL = employee.EMAIL;
             nv1.HOTEN = employee.HOTEN;
-
-            //================================================
-            if (employee != null && employee.PASS == password)
-            {
-                var res = new
-                {
-                    result = 1,
-                    role = "NHANVIEN",
-                    token = JwtManager.GenerateToken(nv1)
-                };
-                return Ok(res);
-            }
-            //throw new HttpResponseException(HttpStatusCode.Unauthorized);
             return Ok(new
             {
-                result = -1,
-                message = "Sai tài khoản đăng nhập hoặc mật khẩu"
+                result = 1,
+                role = "NHANVIEN",
+                token = JwtManager.GenerateToken(nv1)
             });
         }
 
@@ -119,7 +117,7 @@ namespace EcommercePerfume.Controllers
                     message = "Mã nhân viên đã tồn tại"
                 });
             }
-            var checkEmail = perfumeEntities.NHANVIENs.Where(x => x.EMAIL == nv.EMAIL).ToList();
+            var checkEmail = perfumeEntities.NHANVIENs.Where(x => x.EMAIL == nv.EMAIL || x.SODIENTHOAI == nv.SODIENTHOAI).ToList();
             if (checkEmail.Count >= 1)
             {
                 return Ok(new
@@ -161,7 +159,7 @@ namespace EcommercePerfume.Controllers
             }
             if (checkNV.EMAIL != nv.EMAIL)
             {
-                var checkEmail = perfumeEntities.NHANVIENs.Where(x => x.EMAIL == nv.EMAIL).ToList();
+                var checkEmail = perfumeEntities.NHANVIENs.Where(x => x.EMAIL == nv.EMAIL || x.SODIENTHOAI == nv.SODIENTHOAI).ToList();
                 if(checkEmail.Count >= 1)
                 {
                     return Ok(new

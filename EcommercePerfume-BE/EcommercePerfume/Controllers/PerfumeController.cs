@@ -18,7 +18,16 @@ namespace EcommercePerfume.Controllers
         [AllowAnonymous]
         public IHttpActionResult Get()
         {
-            var perfumes = perfumeEntities.get_all_product().ToList();
+            var perfumes = perfumeEntities.SanPhams
+                .Select(sp=> new
+                {
+                    sp.MA_SP,
+                    sp.MA_DSP,
+                    sp.SOLUONGTON,
+                    sp.GIA,
+                    sp.DUNGTICH,
+                })
+                .ToList();
             if (perfumes.Count == 0)
             {
                 return Ok(new

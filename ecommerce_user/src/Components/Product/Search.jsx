@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import NumberFormat from 'react-number-format'
 import { connect } from 'react-redux'
-import {  useRouteMatch } from 'react-router-dom'
+import { useRouteMatch } from 'react-router-dom'
 import { actFetchBrandReq } from '../../actions/brand'
 import { actFetchProductsRequest } from '../../actions/product'
 import ProductItems from './ProductItems'
@@ -29,7 +29,7 @@ function Search({ onFetchLineProduct, product, brand }) {
     //         if (sort === 'gia') {
     //             console.log(products)
     //             let list = products.sort((a, b) => {
-    //                 return a.SANPHAM.GIA - b.SANPHAM.GIA
+    //                 return a.SanPhams.GIA - b.SanPhams.GIA
     //             })
     //             setProducts(list)
     //         } else {
@@ -48,7 +48,7 @@ function Search({ onFetchLineProduct, product, brand }) {
         (async () => {
             // const query = new URLSearchParams(location.search);
             // let keyword = query.get('keyword')
-            
+
             setKeywordSearch(match.params.keyword)
             await onFetchLineProduct(match.params.keyword === null ? "" : match.params.keyword.replace(/\s+/g, ' ').trim())
         })()
@@ -68,12 +68,12 @@ function Search({ onFetchLineProduct, product, brand }) {
                 // setProducts(listFilterBrand)
             }
             if (filter.priceStart !== '' && filter.priceEnd !== '') {
-                temp = temp.filter(pro => pro.SANPHAM.GIA >= filter.priceStart && pro.SANPHAM.GIA <= filter.priceEnd)
+                temp = temp.filter(pro => pro.SanPhams.GIA >= filter.priceStart && pro.SanPhams.GIA <= filter.priceEnd)
                 // setProducts(filter)
             } else if (filter.priceStart !== '') {
-                temp = temp.filter(pro => pro.SANPHAM.GIA >= filter.priceStart)
+                temp = temp.filter(pro => pro.SanPhams.GIA >= filter.priceStart)
             } else if (filter.priceEnd !== '') {
-                temp = temp.filter(pro => pro.SANPHAM.GIA <= filter.priceEnd)
+                temp = temp.filter(pro => pro.SanPhams.GIA <= filter.priceEnd)
             }
 
             if (filter.gender === 'nam') {

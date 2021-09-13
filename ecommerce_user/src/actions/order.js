@@ -49,6 +49,7 @@ export const actAddOrderReq = (cart, value, history,transactionID) => {
         NGAYDAT: new Date(),
         NGAYGIAO: new Date(value.ngaygiao),
         TRANGTHAI: 0,
+        GHICHU: value.GHICHU,
         TRANSACTIONID: transactionID,
         MA_KH: kh.actort,
         CT_PHIEUDAT: listCTPD(cart)
@@ -79,11 +80,13 @@ export const actAddOrderReq = (cart, value, history,transactionID) => {
 }
 
 export const actFetchOrderReq = (status, history) => {
-    var makh = getKh(history).actort
-    return async (dispatch) => {
-        return await callApi(`OrderUser?MA_KH=${makh}&TRANGTHAI=${status}`, 'GET', null, `Bearer ${getTokenUser()}`).then(res => {
-            dispatch(actFetchOrder(res.data, status));
-        });
+    var kh = getKh(history)
+    if(kh != null){
+        return async (dispatch) => {
+            return await callApi(`OrderUser?MA_KH=${kh.actort}&TRANGTHAI=${status}`, 'GET', null, `Bearer ${getTokenUser()}`).then(res => {
+                dispatch(actFetchOrder(res.data, status));
+            });
+        }
     }
 }
 
@@ -142,4 +145,12 @@ export const actUpdateStatus = (itemUpdate, status) => {
         status
     }
 
+}
+
+export const actCheckQuantity = (order) => {
+    return async () => {
+        return await callApi(`CheckQuantity`, 'POST', order, `Bearer ${getTokenUser()}`).then(res => {
+            return res.data
+        });
+    }
 }

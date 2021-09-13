@@ -321,8 +321,11 @@ namespace EcommercePerfume.Controllers
                 });
             }
 
-            var checkLinePerfumehaveProduct = perfumeEntities.get_all_linePerfume_by_DSP(id).ToList();
-            if(checkLinePerfumehaveProduct.Count > 0)
+            //var checkLinePerfumehaveProduct = perfumeEntities.get_all_linePerfume_by_DSP(id).ToList();
+            var checkLinePerfumehaveProduct = perfumeEntities.SanPhams.Where(x => x.MA_DSP == id)
+                .Select(x => x.MA_SP).ToList();
+          
+            if (checkLinePerfumehaveProduct.Count > 0)
             {
                 return Ok(new
                 {

@@ -74,7 +74,8 @@ namespace EcommercePerfume.Controllers
                     message = "Mã công ty vận chuyển đã tồn tại"
                 });
             }
-            var checkEmail = perfumeEntities.CTVCs.Where(x => x.EMAIL == ctvc.EMAIL).Select(x => x.MA_CTVC).FirstOrDefault();
+            var checkEmail = perfumeEntities.CTVCs.Where(x => x.EMAIL == ctvc.EMAIL || x.SODIENTHOAI == ctvc.SODIENTHOAI)
+                .Select(x => x.MA_CTVC).FirstOrDefault();
             if(checkEmail != null)
             {
                 return Ok(new
@@ -105,7 +106,7 @@ namespace EcommercePerfume.Controllers
                     message = "Mã công ty vận chuyển đã tồn tại"
                 });
             }
-            var checkEmail = perfumeEntities.CTVCs.Where(x => x.EMAIL == ctvc.EMAIL && x.MA_CTVC != company.MA_CTVC)
+            var checkEmail = perfumeEntities.CTVCs.Where(x => (x.EMAIL == ctvc.EMAIL || x.SODIENTHOAI == ctvc.SODIENTHOAI) && x.MA_CTVC != company.MA_CTVC)
                 .Select(x => x.MA_CTVC).FirstOrDefault();
             if (checkEmail != null)
             {

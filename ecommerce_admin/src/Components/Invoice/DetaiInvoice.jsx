@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import NumberFormat from 'react-number-format';
-import {formatDate} from './../../utils/formatDate';
+import { formatDate } from './../../utils/formatDate';
 
 
 const Modal = ({ isShowing, hide, item }) => isShowing ? ReactDOM.createPortal(
@@ -17,7 +17,7 @@ const Modal = ({ isShowing, hide, item }) => isShowing ? ReactDOM.createPortal(
                 <div className="card">
                   <div className="text-left logo p-2 px-5"></div>
                   <div className="invoice p-5">
-                    <h5>Hoá đơn</h5> 
+                    <h5>Hoá đơn</h5>
                     <div className="payment border-top mt-3 mb-3 border-bottom table-responsive">
                       <table className="table table-borderless">
                         <tbody>
@@ -37,7 +37,7 @@ const Modal = ({ isShowing, hide, item }) => isShowing ? ReactDOM.createPortal(
                           </tr>
                         </tbody>
                       </table>
-                      <p style={{marginLeft: 10}}>Địa chỉ :&nbsp;&nbsp; {item.DIACHI}</p>
+                      <p style={{ marginLeft: 10 }}>Địa chỉ :&nbsp;&nbsp; {item.DIACHI}</p>
                     </div>
                     <div className="product border-bottom table-responsive">
                       <table className="table table-borderless">
@@ -80,7 +80,6 @@ const Modal = ({ isShowing, hide, item }) => isShowing ? ReactDOM.createPortal(
                         </table>
                       </div>
                     </div>
-                    <p className="font-weight-bold mb-0">Cảm ơn khi đã mua sắm ở website của chúng tôi!</p> <span>Perfume Team</span>
                   </div>
                   <div className="d-flex justify-content-between footer p-3"> <span>Need Help? visit our <a href="/#"> help center</a></span> <span>{formatDate(new Date(item.NGAYTAOHD))}</span> </div>
                 </div>

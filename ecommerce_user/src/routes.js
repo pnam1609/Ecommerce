@@ -40,6 +40,11 @@ const routes = [
         main: ({ history }) => <DiscountPage history={history} />
     },
     {
+        path: '/user/:id',
+        exact: false,
+        main: ({ match, history, location }) => <SignUpPage location={location} match={match} history={history} />
+    },
+    {
         path: '/signin',
         exact: true,
         main: ({ history }) => <SignInPage history={history} />

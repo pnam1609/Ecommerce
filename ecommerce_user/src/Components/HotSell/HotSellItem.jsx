@@ -45,7 +45,7 @@ export const HotSellItem = ({ item,onAddToCart }) => {
                     <p className="desc">Số đã được mua:  {item.SLBAN}</p>
                 </Link>
                 <div className="bottom-wrap">
-                    <button onClick={() => { handleAddToCart(item)}} className="btn btn-sm btn-primary float-right">Thêm vào giỏ hàng</button>
+                    <button onClick={() => { handleAddToCart(item)}} className="btn btn-sm btn-primary float-right">Add to cart</button>
                     <div className="price-wrap h5">
                         <NumberFormat displayType="text" thousandSeparator={true} value={item.CT_KM !== null ? item.SanPhams.GIA * (100 - item.CT_KM.PHANTRAMKM) / 100 : item.SanPhams.GIA} suffix={"đ"} />
                         &nbsp;&nbsp;&nbsp;

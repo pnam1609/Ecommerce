@@ -17,7 +17,17 @@ namespace EcommercePerfume.Controllers
         [AllowAnonymous]
         public IHttpActionResult Get()
         {
-            var shipper = perfumeEntities.get_all_shipper().ToList();
+            var shipper = perfumeEntities.NHANVIEN_GH
+                .Select(gh => new
+                {
+                    gh.MA_NVGH,
+                    gh.HOTEN,
+                    gh.NGAYSINH,
+                    gh.MA_CTVC,
+                    gh.SODIENTHOAI,
+                    gh.EMAIL
+                })
+                .ToList();
 
 
             if (shipper.Count == 0)
@@ -76,7 +86,7 @@ namespace EcommercePerfume.Controllers
                     message = "Mã công ty vận chuyển không tồn tại"
                 });
             }
-            var checkEmail = perfumeEntities.NHANVIEN_GH.Where(x => x.EMAIL == nvgh.EMAIL).Select(x => x.MA_NVGH).FirstOrDefault();
+            var checkEmail = perfumeEntities.NHANVIEN_GH.Where(x => x.EMAIL == nvgh.EMAIL || x.SODIENTHOAI == nvgh.SODIENTHOAI).Select(x => x.MA_NVGH).FirstOrDefault();
             if (checkEmail != null)
             {
                 return Ok(new
@@ -116,7 +126,7 @@ namespace EcommercePerfume.Controllers
                     message = "Mã công ty vận chuyển không tồn tại"
                 });
             }
-            var checkEmail = perfumeEntities.NHANVIEN_GH.Where(x => x.EMAIL == nvgh.EMAIL && x.MA_NVGH != nhanVienGH.MA_NVGH)
+            var checkEmail = perfumeEntities.NHANVIEN_GH.Where(x => (x.EMAIL == nvgh.EMAIL || x.SODIENTHOAI == nvgh.SODIENTHOAI) && x.MA_NVGH != nhanVienGH.MA_NVGH)
                 .Select(x => x.MA_NVGH).FirstOrDefault();
             if (checkEmail != null)
             {

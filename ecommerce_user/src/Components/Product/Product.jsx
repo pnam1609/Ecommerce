@@ -14,7 +14,10 @@ export const Product = ({ products, onFetchProduct }) => {
     }, [])
 
     var productList = products.map((pro, index) => {
-        return <ProductItems key={index} item={pro} grid={3} /> // grid này để cho product item chia col md to nhỏ
+        if (pro.SanPhams !== null && pro.SanPhams.SOLUONGTON > 0) {
+            return <ProductItems key={index} item={pro} grid={3} /> // grid này để cho product item chia col md to nhỏ
+        }
+        return null
     })
 
 
@@ -31,10 +34,7 @@ export const Product = ({ products, onFetchProduct }) => {
                         </div>
                     </div>
                 </div>
-                {/* <!-- row.// --> */}
-
             </div>
-            {/* <!-- container // --> */}
         </section>
     )
 }

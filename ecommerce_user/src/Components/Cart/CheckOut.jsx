@@ -3,7 +3,7 @@ import Total from './Total';
 import { getKh } from './../../actions/getUser'
 import isEmpty from "validator/lib/isEmpty"
 import { useHistory } from 'react-router-dom';
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
@@ -15,19 +15,23 @@ function CheckOut({ cart }) {
         address: '',
         phoneNumber: '',
         email: '',
-        ngaygiao: new Date().setDate(new Date().getDate() + 1)
+        ngaygiao: new Date().setDate(new Date().getDate() + 3),
+        GHICHU: ""
     })
     const [validationMsg, setvalidationMsg] = useState('')
 
     useEffect(() => {
         (async () => {
-            var user  = getKh(history)
-            setValue({
-                ...value,
-                name: user.unique_name[0],
-                address: user.unique_name[1],
-                phoneNumber: user.unique_name[2],
-            })
+            var user = getKh(history)
+            console.log(user)
+            if (user != null) {
+                setValue({
+                    ...value,
+                    name: user.unique_name[0],
+                    address: user.unique_name[1],
+                    phoneNumber: user.unique_name[2],
+                })
+            }
         })()// eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -91,7 +95,7 @@ function CheckOut({ cart }) {
                                                     onChange={e => setValue({ ...value, phoneNumber: e.target.value })} />
                                                 <small className="form-text text-danger">{validationMsg.phoneNumber}</small>
                                             </div>
-                                            <div className="form-group">
+                                            {/* <div className="form-group">
                                                 <label>Ngày giao</label>
                                                 <DatePicker
                                                     className="form-control"
@@ -100,6 +104,13 @@ function CheckOut({ cart }) {
                                                     onChange={date => setValue({ ...value, ngaygiao: date })} //only when value has changed
                                                 />
                                                 <small className="form-text text-danger">{validationMsg.ngaygiao}</small>
+                                            </div> */}
+                                            <div className="form-group">
+                                                <label>Ghi chú</label>
+                                                <input type="text" className="form-control" name="address"
+                                                    placeholder="Ghi chú cho đơn đặt hàng của bạn..." value={value.GHICHU}
+                                                    onChange={e => setValue({ ...value, GHICHU: e.target.value })} />
+                                                <small className="form-text text-danger">{validationMsg.GHICHU}</small>
                                             </div>
                                         </form>
                                     </article>

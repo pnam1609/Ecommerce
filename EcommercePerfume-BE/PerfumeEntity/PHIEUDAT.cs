@@ -28,6 +28,7 @@ namespace PerfumeEntity
         public System.DateTime NGAYDAT { get; set; }
         public System.DateTime NGAYGIAO { get; set; }
         public int TRANGTHAI { get; set; }
+        public string GHICHU { get; set; }
         public string MA_KH { get; set; }
         public string MA_NV { get; set; }
         public string TRANSACTIONID { get; set; }

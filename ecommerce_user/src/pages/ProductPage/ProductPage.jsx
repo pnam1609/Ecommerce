@@ -7,8 +7,7 @@ import Product  from './../../Components/Product/Product';
 import Sales from './../../Components/Sales/Sales';
 import Subscribe from './../../Components/Subscribe/Subscribe';
 
-function ProductPage({history}) {
-    console.log(process.env)
+function ProductPage() {
 
     return (
         <div style ={{overflowX: 'hidden'}}>

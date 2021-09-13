@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3894588e50bf47cab6d440ffe8a445b1" Name="Diagram1">
+      <Diagram DiagramId="b878b2c24dbf450f97957824c86cea53" Name="Diagram1">
         <EntityTypeShape EntityType="PERFUMEModel.CT_DDH" Width="1.5" PointX="8.25" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PERFUMEModel.CT_KM" Width="1.5" PointX="5.25" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PERFUMEModel.CT_PHIEUDAT" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
@@ -19,11 +19,11 @@
         <EntityTypeShape EntityType="PERFUMEModel.KHUYENMAI" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PERFUMEModel.NHANVIEN" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PERFUMEModel.NHANVIEN_GH" Width="1.5" PointX="3.75" PointY="23" IsExpanded="true" />
-        <EntityTypeShape EntityType="PERFUMEModel.PHIEUDAT" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PERFUMEModel.PHIEUDAT" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PERFUMEModel.PHIEUNHAP" Width="1.5" PointX="8.25" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="PERFUMEModel.PHIEUTRA" Width="1.5" PointX="11.25" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="PERFUMEModel.SanPham" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PERFUMEModel.sysdiagram" Width="1.5" PointX="7.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PERFUMEModel.sysdiagram" Width="1.5" PointX="7.75" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PERFUMEModel.THAYDOIGIA" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
         <AssociationConnector Association="PERFUMEModel.FK_CT_DDH_DONDATHANG" ManuallyRouted="false" />
         <AssociationConnector Association="PERFUMEModel.FK_CT_DDH_SanPham1" ManuallyRouted="false" />
