@@ -99,6 +99,20 @@ const DetailProduct = ({ match, onAddtoCart }) => {
             }
         }
     }
+    function displayAddToCart() {
+        if (detail != null) {
+            var sp = detail.SanPhams.find(x => x.MA_SP === masp);
+            if(sp === undefined) return
+            if (sp.SOLUONGTON <= 0) {
+                return <button disabled onClick={() => handleAddTocart()} className="btn  btn-outline-primary">
+                    Out of stock
+                </button>
+            }
+            return <button onClick={() => handleAddTocart()} className="btn  btn-outline-primary">
+                <i className="fas fa-shopping-cart"></i> Add to cart
+            </button>
+        }
+    }
 
     return (
         <>
@@ -201,7 +215,7 @@ const DetailProduct = ({ match, onAddtoCart }) => {
                                                 </dd>
                                             </dl>
                                             <hr />
-                                            <button onClick={() => handleAddTocart()} className="btn  btn-outline-primary"> <i className="fas fa-shopping-cart"></i> Add to cart </button>
+                                            {displayAddToCart()}
                                         </article>
                                     </aside>
                                 </div>
@@ -216,7 +230,7 @@ const DetailProduct = ({ match, onAddtoCart }) => {
                                     <p> Những chai nước hoa của Versace được lấy cảm hứng và kết nối sâu sắc từ thần thoại Hy Lạp. Versace Eros mang một hương vị nam tính đầy mạnh mẽ thể hiện sự cuốn hút và gợi cảm của nam giới.</p>
                                     <p>Hãng Versace đã cho thiết kế chai xanh ngọc trong suốt đầy ấn tượng, Nước hoa Versace Eros 5ml ẩn giấu hương thơm mạnh mẽ, cá tính pha chút nồng ấm của gỗ Phương Đông.</p>
                                     <p>Chuyên gia Aurelien Guichard, ông đã đem hương vị phương Đông kết hợp với cảm hứng thần thoại Hy Lạp để tạo ra sản phẩm chai Versace Eros for men 5ml.</p> */}
-                                    {detail == null ? "" : <td dangerouslySetInnerHTML={{__html: detail.MOTA}} />}
+                                    {detail == null ? "" : <td dangerouslySetInnerHTML={{ __html: detail.MOTA }} />}
                                 </div>
                             </article>
                         </div>

@@ -53,9 +53,9 @@ namespace EcommercePerfume.Controllers
                 .OrderBy(ct => ct.PHANTRAMKM)
                 .Select(ct => new
                 {
-                    MA_KM = ct.MA_KM,
-                    MA_DSP = ct.MA_DSP,
-                    PHANTRAMKM = ct.PHANTRAMKM
+                    ct.MA_KM,
+                    ct.MA_DSP,
+                    ct.PHANTRAMKM
                 }).FirstOrDefault()
                 }).ToList();
 

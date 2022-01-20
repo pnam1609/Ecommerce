@@ -248,22 +248,22 @@ export const LineProductActionPage = ({ brand, match, onFetchBrand, onAddLinePro
     console.log(value);
     const isValid = validateAll()
     //validate
-    if (isValid) {
-      if (checkAdd) {
-        if (value.SanPhams.length === 0) {
-          MySwal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: "Khi thêm dòng sản phẩm cần ít nhất 1 sản phẩm"
-          })
-          return
-        }
-        onAddLineProduct(value, history)
-      }
-      else {
-        onUpdateLineProduct(value, history)
-      }
-    }
+    // if (isValid) {
+    //   if (checkAdd) {
+    //     if (value.SanPhams.length === 0) {
+    //       MySwal.fire({
+    //         icon: 'error',
+    //         title: 'Oops...',
+    //         text: "Khi thêm dòng sản phẩm cần ít nhất 1 sản phẩm"
+    //       })
+    //       return
+    //     }
+    //     onAddLineProduct(value, history)
+    //   }
+    //   else {
+    //     onUpdateLineProduct(value, history)
+    //   }
+    // }
   }
   // console.log(value)
   return (
